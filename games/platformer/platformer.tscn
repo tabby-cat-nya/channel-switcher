@@ -1,7 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=7 format=3 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_oyf6i"]
+
+[sub_resource type="Gradient" id="Gradient_1wj3w"]
+offsets = PackedFloat32Array(0.0962343, 0.158996)
+colors = PackedColorArray(0, 0.254902, 0, 1, 0.618821, 0.815103, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_84mot"]
+gradient = SubResource("Gradient_1wj3w")
+fill_from = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyf6i"]
 size = Vector2(32, 32)
@@ -17,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("GradientTexture2D_84mot")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(124, 155)
@@ -30,7 +39,7 @@ texture = ExtResource("1_oyf6i")
 shape = SubResource("RectangleShape2D_oyf6i")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(317, 384)
+position = Vector2(319, 344)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_1wj3w")
