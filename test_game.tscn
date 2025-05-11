@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch1x8pfdu2b1g"]
+
+[ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_x67xg"]
+[ext_resource type="Script" uid="uid://dlqr0ghj0sh6a" path="res://base modules/move_test.gd" id="2_2d1aj"]
+
+[node name="Game" type="Node"]
+
+[node name="ColorRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x67xg")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_2d1aj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(307, 174)
+texture = ExtResource("1_x67xg")
