@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=3 format=3 uid="uid://ct8axfbvd2wn4"]
 
-[ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://test_channel.tscn" id="1_mlf6e"]
+[ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
+[ext_resource type="Texture2D" uid="uid://cyo0wl4dt3td1" path="res://sprites/offline_channel.png" id="2_po0ka"]
 
 [node name="GameScene" type="Control"]
 layout_mode = 3
@@ -9,6 +10,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -21,43 +31,63 @@ columns = 3
 
 [node name="Control" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
+channel_name = ""
 
-[node name="ColorRect" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect2" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect2" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect3" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect3" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect4" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect4" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect5" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect5" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect6" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect6" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect7" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect7" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
 
-[node name="ColorRect8" type="ColorRect" parent="GridContainer"]
+[node name="ColorRect8" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_po0ka")
+expand_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(320, 180)
