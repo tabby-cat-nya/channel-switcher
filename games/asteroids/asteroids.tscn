@@ -29,12 +29,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_f07rl")
 
-[node name="Ship" type="RigidBody2D" parent="."]
+[node name="Ship" type="RigidBody2D" parent="." node_paths=PackedStringArray("bullet_goal", "bullet_spawn")]
 position = Vector2(327, 183)
 gravity_scale = 0.0
 script = ExtResource("1_6dc0m")
 rotation_force = 10
 drag = 10
+bullet_goal = NodePath("BulletGoal")
+bullet_spawn = NodePath("Shooter")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
 texture_filter = 1
@@ -45,3 +47,6 @@ shape = SubResource("CircleShape2D_dtqgl")
 
 [node name="Shooter" type="Marker2D" parent="Ship"]
 position = Vector2(30, 0)
+
+[node name="BulletGoal" type="Marker2D" parent="Ship"]
+position = Vector2(459, 0)

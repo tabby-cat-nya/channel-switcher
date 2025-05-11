@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=6 format=3 uid="uid://ct8axfbvd2wn4"]
 
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
 [ext_resource type="PackedScene" uid="uid://ch1x8pfdu2b1g" path="res://test_game.tscn" id="2_mixcd"]
 [ext_resource type="Texture2D" uid="uid://cyo0wl4dt3td1" path="res://sprites/offline_channel.png" id="2_po0ka"]
 [ext_resource type="PackedScene" uid="uid://bw1hhx7lyfonr" path="res://games/asteroids/asteroids.tscn" id="3_mj2jn"]
+[ext_resource type="PackedScene" uid="uid://ckbyiwy0dxbsd" path="res://games/platformer/platformer.tscn" id="4_mj2jn"]
 
 [node name="GameScene" type="Control"]
 layout_mode = 3
@@ -54,6 +55,11 @@ size_flags_vertical = 3
 texture = ExtResource("2_po0ka")
 expand_mode = 1
 
+[node name="Control3" parent="GridContainer" instance=ExtResource("1_mlf6e")]
+layout_mode = 2
+channel_name = "Platformer"
+channel_scene = ExtResource("4_mj2jn")
+
 [node name="ColorRect3" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -76,13 +82,6 @@ texture = ExtResource("2_po0ka")
 expand_mode = 1
 
 [node name="ColorRect6" type="TextureRect" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_po0ka")
-expand_mode = 1
-
-[node name="ColorRect7" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

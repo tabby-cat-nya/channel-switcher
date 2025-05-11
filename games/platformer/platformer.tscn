@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckbyiwy0dxbsd"]
+
+[ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
+[ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_oyf6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyf6i"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wj3w"]
+size = Vector2(608, 46)
+
+[node name="Platformer" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(124, 155)
+script = ExtResource("1_1wj3w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_oyf6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_oyf6i")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(317, 384)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_1wj3w")
