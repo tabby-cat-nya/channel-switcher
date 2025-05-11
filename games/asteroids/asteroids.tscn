@@ -37,7 +37,11 @@ rotation_force = 10
 drag = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
+texture_filter = 1
 texture = ExtResource("2_j0tb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ship"]
 shape = SubResource("CircleShape2D_dtqgl")
+
+[node name="Shooter" type="Marker2D" parent="Ship"]
+position = Vector2(30, 0)

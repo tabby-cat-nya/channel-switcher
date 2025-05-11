@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://63rik2noj8id"]
+[gd_scene load_steps=4 format=3 uid="uid://63rik2noj8id"]
 
 [ext_resource type="Script" uid="uid://h43mmpjmmir4" path="res://base modules/channel_controller.gd" id="1_r07ln"]
 [ext_resource type="Texture2D" uid="uid://cyo0wl4dt3td1" path="res://sprites/offline_channel.png" id="2_01b3p"]
-[ext_resource type="PackedScene" uid="uid://ch1x8pfdu2b1g" path="res://test_game.tscn" id="3_27arb"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iix04"]
 viewport_path = NodePath("GameViewport")
@@ -46,5 +45,3 @@ texture = ExtResource("2_01b3p")
 handle_input_locally = false
 size = Vector2i(640, 360)
 render_target_update_mode = 4
-
-[node name="Game" parent="GameViewport" instance=ExtResource("3_27arb")]

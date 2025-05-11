@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://i4us3nam2kn5"]
+
+[ext_resource type="Texture2D" uid="uid://b775cji263ifl" path="res://sprites/asteroids_bullet.png" id="1_bvcl6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bvcl6"]
+radius = 13.0
+
+[node name="Bullet" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bvcl6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_bvcl6")

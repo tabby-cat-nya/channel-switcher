@@ -8,9 +8,16 @@ class_name Channel
 @export var offline_channel_cover : TextureRect
 @export var game_viewport : SubViewport
 
-var channel_online : bool
+var channel_online : bool = true
 
-
+func _ready() -> void:
+	var new_scene = channel_scene.instantiate()
+	game_viewport.add_child(new_scene)
+	
+	
+	
+func _process(delta: float) -> void:
+	offline_channel_cover.visible = !channel_online
 
 func start_channel():
 	pass
