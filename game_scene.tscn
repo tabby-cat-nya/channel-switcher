@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=8 format=3 uid="uid://ct8axfbvd2wn4"]
 
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
 [ext_resource type="PackedScene" uid="uid://ch1x8pfdu2b1g" path="res://test_game.tscn" id="2_mixcd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bw1hhx7lyfonr" path="res://games/asteroids/asteroids.tscn" id="3_mj2jn"]
 [ext_resource type="PackedScene" uid="uid://ckbyiwy0dxbsd" path="res://games/platformer/platformer.tscn" id="4_mj2jn"]
 [ext_resource type="PackedScene" uid="uid://cnpyrh4c6a7cg" path="res://games/bullet_hell/bullet_hell.tscn" id="6_kdryc"]
+[ext_resource type="PackedScene" uid="uid://d0qteaieltywg" path="res://games/bomb defusal/bomb_defusal.tscn" id="7_6e45b"]
 
 [node name="GameScene" type="Control"]
 layout_mode = 3
@@ -66,6 +67,11 @@ layout_mode = 2
 channel_name = "Bullet Hell"
 channel_scene = ExtResource("6_kdryc")
 
+[node name="Control5" parent="GridContainer" instance=ExtResource("1_mlf6e")]
+layout_mode = 2
+channel_name = "Bomb Defusal"
+channel_scene = ExtResource("7_6e45b")
+
 [node name="ColorRect3" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -74,13 +80,6 @@ texture = ExtResource("2_po0ka")
 expand_mode = 1
 
 [node name="ColorRect4" type="TextureRect" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_po0ka")
-expand_mode = 1
-
-[node name="ColorRect5" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

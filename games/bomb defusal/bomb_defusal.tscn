@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0qteaieltywg"]
+
+[ext_resource type="Script" uid="uid://c7xvq23usjvax" path="res://games/bomb defusal/bomb_defusal.gd" id="1_kwp46"]
+
+[sub_resource type="Gradient" id="Gradient_yym1j"]
+colors = PackedColorArray(0.947327, 0.000737363, 0.000402951, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwp46"]
+gradient = SubResource("Gradient_yym1j")
+fill = 1
+fill_from = Vector2(0.495726, 0.452991)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yym1j"]
+font_size = 226
+
+[node name="BombDefusal" type="Node" node_paths=PackedStringArray("progress1", "progress2", "prompt")]
+script = ExtResource("1_kwp46")
+progress1 = NodePath("MarginContainer/PanelContainer/HBoxContainer/ProgressBar")
+progress2 = NodePath("MarginContainer/PanelContainer/HBoxContainer/ProgressBar2")
+prompt = NodePath("MarginContainer/PanelContainer/HBoxContainer/Label")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_kwp46")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 8.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "8"
+label_settings = SubResource("LabelSettings_yym1j")
+horizontal_alignment = 1
+
+[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 8.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
