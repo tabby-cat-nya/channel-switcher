@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://63rik2noj8id"]
+
+[ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_iix04"]
+[ext_resource type="Script" uid="uid://dlqr0ghj0sh6a" path="res://move_test.gd" id="2_jbg2j"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iix04"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_iix04")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(640, 360)
+
+[node name="ColorRect" type="TextureRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_iix04")
+
+[node name="Node2D" type="Node2D" parent="SubViewport"]
+script = ExtResource("2_jbg2j")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Node2D"]
+texture = ExtResource("1_iix04")
