@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkabgl6p44c5b"]
+
+[ext_resource type="Texture2D" uid="uid://dqorec3q3h3pp" path="res://sprites/asteroidsShip.png" id="1_8m3yy"]
+[ext_resource type="Texture2D" uid="uid://by327tfhk6xrs" path="res://sprites/invadersBarrier.png" id="2_jsxp6"]
+
+[sub_resource type="Gradient" id="Gradient_4laqq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.882845)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ceqm6"]
+frequency = 0.0683
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k5cbn"]
+width = 640
+height = 360
+color_ramp = SubResource("Gradient_4laqq")
+noise = SubResource("FastNoiseLite_ceqm6")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdxs5"]
+radius = 24.1868
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gagve"]
+size = Vector2(56, 28)
+
+[node name="SpaceInvaders" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_k5cbn")
+
+[node name="Ship" type="CharacterBody2D" parent="."]
+position = Vector2(336, 319)
+rotation = -1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Ship"]
+texture = ExtResource("1_8m3yy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship"]
+shape = SubResource("CircleShape2D_jdxs5")
+
+[node name="Barrier" type="StaticBody2D" parent="."]
+position = Vector2(334, 264)
+
+[node name="Sprite2D" type="Sprite2D" parent="Barrier"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_jsxp6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gagve")
