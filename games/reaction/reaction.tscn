@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcu5svl5gjd4r"]
+
+[ext_resource type="Script" uid="uid://cs3ipvky7dk6c" path="res://games/reaction/reaction.gd" id="1_fqqjl"]
+
+[sub_resource type="Gradient" id="Gradient_nlvo0"]
+colors = PackedColorArray(0, 0.730016, 0, 1, 0.0627451, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fqqjl"]
+gradient = SubResource("Gradient_nlvo0")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_npxhc"]
+font_size = 80
+
+[sub_resource type="Gradient" id="Gradient_6p5vi"]
+colors = PackedColorArray(1, 0, 0.141176, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wmmsg"]
+gradient = SubResource("Gradient_6p5vi")
+fill_to = Vector2(1, 1)
+
+[node name="Reaction" type="Node"]
+script = ExtResource("1_fqqjl")
+
+[node name="Prepare" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Prepare"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_fqqjl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Prepare"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="Prepare/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Prepare/MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "Get Ready to press Space"
+label_settings = SubResource("LabelSettings_npxhc")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Press" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Press"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wmmsg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Press"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="Press/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Press/MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "Press Space Now!!!"
+label_settings = SubResource("LabelSettings_npxhc")
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7fjw13eg65gh"]
+
+[ext_resource type="Script" uid="uid://bs11jp8pmu8uv" path="res://games/crafting/pixel.gd" id="1_gwgos"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qltj"]
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" node_paths=PackedStringArray("key_label")]
+custom_minimum_size = Vector2(60, 60)
+script = ExtResource("1_gwgos")
+key_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A"
+label_settings = SubResource("LabelSettings_8qltj")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://drk2fwkv816qv"]
+
+[ext_resource type="Script" uid="uid://b4ps00o1tpuft" path="res://games/crafting/crafting.gd" id="1_51qhm"]
+
+[sub_resource type="Gradient" id="Gradient_51qhm"]
+colors = PackedColorArray(0.774014, 0.581042, 1, 1, 1, 0.595754, 0.986362, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8e2i7"]
+noise_type = 0
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_26tlc"]
+width = 360
+height = 180
+color_ramp = SubResource("Gradient_51qhm")
+noise = SubResource("FastNoiseLite_8e2i7")
+
+[node name="Crafting" type="Node" node_paths=PackedStringArray("pixel_grid", "timer_progress")]
+script = ExtResource("1_51qhm")
+keys = Array[String](["Q", "E", "R", "T", "Y", "U", "F", "M"])
+pixel_grid = NodePath("CenterContainer/VBoxContainer/GridContainer")
+timer_progress = NodePath("CenterContainer/VBoxContainer/Timer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_26tlc")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Timer" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0

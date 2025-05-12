@@ -52,4 +52,7 @@ func enter_number(number : int):
 		pass
 
 func pick_new_number():
-	current_number = randi_range(0,9)
+	var new_number = current_number
+	while(new_number == current_number):
+		new_number = randi_range(0,9)
+	current_number = new_number
