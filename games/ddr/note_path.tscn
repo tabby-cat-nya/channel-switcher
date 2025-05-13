@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgg4fsg4xhdwa"]
+
+[ext_resource type="Script" uid="uid://ctxqhit4up2a1" path="res://games/ddr/note_path.gd" id="1_ddair"]
+[ext_resource type="Texture2D" uid="uid://co01e75fr42v2" path="res://sprites/ddr_red.png" id="2_1p2y5"]
+[ext_resource type="Texture2D" uid="uid://5fc77pbmdrlx" path="res://sprites/ddr_grey.png" id="3_6whpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxbdn"]
+size = Vector2(60, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddair"]
+size = Vector2(60, 12)
+
+[node name="NotePath" type="Node2D" node_paths=PackedStringArray("detection_area", "judgement_arrow", "note_spawn_location")]
+script = ExtResource("1_ddair")
+note_speed = 75.0
+arrow_texture = ExtResource("2_1p2y5")
+detection_area = NodePath("Hit/Area2D")
+judgement_arrow = NodePath("Hit/Sprite2D")
+note_spawn_location = NodePath("NoteSpawn")
+
+[node name="NoteSpawn" type="Marker2D" parent="."]
+position = Vector2(0, 366)
+
+[node name="Hit" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Hit"]
+modulate = Color(1, 1, 1, 0.32549)
+scale = Vector2(2, 2)
+texture = ExtResource("3_6whpv")
+
+[node name="Area2D" type="Area2D" parent="Hit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit/Area2D"]
+shape = SubResource("RectangleShape2D_oxbdn")
+
+[node name="NoteKiller" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="NoteKiller"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoteKiller/Area2D"]
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_ddair")
+debug_color = Color(0.993681, 0.0732683, 0, 0.42)
+
+[connection signal="area_entered" from="NoteKiller/Area2D" to="." method="_on_kill_area_entered"]

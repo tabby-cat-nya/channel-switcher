@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkabgl6p44c5b"]
+[gd_scene load_steps=9 format=3 uid="uid://bkabgl6p44c5b"]
 
 [ext_resource type="Texture2D" uid="uid://dqorec3q3h3pp" path="res://sprites/asteroidsShip.png" id="1_8m3yy"]
+[ext_resource type="Script" uid="uid://c1e46eu5tbni0" path="res://games/space invaders/ship.gd" id="1_jsxp6"]
 [ext_resource type="Texture2D" uid="uid://by327tfhk6xrs" path="res://sprites/invadersBarrier.png" id="2_jsxp6"]
 
 [sub_resource type="Gradient" id="Gradient_4laqq"]
@@ -32,15 +33,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_k5cbn")
 
-[node name="Ship" type="CharacterBody2D" parent="."]
+[node name="Ship" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bullet_spawn", "bullet_goal")]
 position = Vector2(336, 319)
 rotation = -1.5708
+motion_mode = 1
+script = ExtResource("1_jsxp6")
+bullet_spawn = NodePath("Spawn")
+bullet_goal = NodePath("Goal")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
 texture = ExtResource("1_8m3yy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ship"]
 shape = SubResource("CircleShape2D_jdxs5")
+
+[node name="Spawn" type="Marker2D" parent="Ship"]
+position = Vector2(34, 1.48619e-06)
+
+[node name="Goal" type="Marker2D" parent="Ship"]
+position = Vector2(335, 1.46433e-05)
 
 [node name="Barrier" type="StaticBody2D" parent="."]
 position = Vector2(334, 264)
