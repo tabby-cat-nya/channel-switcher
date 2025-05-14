@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ajx46iu2l51"]
+
+[sub_resource type="Gradient" id="Gradient_jc4t8"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.552301, 0.941423)
+colors = PackedColorArray(0, 0.520259, 0.848582, 1, 0.404143, 0.0683453, 0.300205, 1, 0.584314, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j0t7f"]
+gradient = SubResource("Gradient_jc4t8")
+width = 640
+height = 360
+fill = 1
+fill_from = Vector2(0.825082, 0.657132)
+fill_to = Vector2(0.610561, 0.569124)
+repeat = 2
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_j0t7f")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 31
+bbcode_enabled = true
+text = "[wave]Alternate (Name Pending)"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "by Tabby :3"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="StoryButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 0.403922, 1, 1)
+layout_mode = 2
+text = "Play Story"
+
+[node name="EndlessButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 0.403922, 1, 1)
+layout_mode = 2
+text = "Play Endless"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0.388235, 1, 1, 1)
+layout_mode = 2
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 0.346577, 0.280009, 1)
+layout_mode = 2
+text = "Exit Game"
