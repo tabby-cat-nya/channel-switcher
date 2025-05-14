@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://ct8axfbvd2wn4"]
 
+[ext_resource type="Script" uid="uid://d2q6xfk8htbyy" path="res://game_logic.gd" id="1_j5hk1"]
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
 [ext_resource type="PackedScene" uid="uid://ch1x8pfdu2b1g" path="res://test_game.tscn" id="2_mixcd"]
-[ext_resource type="Texture2D" uid="uid://cyo0wl4dt3td1" path="res://sprites/offline_channel.png" id="2_po0ka"]
 [ext_resource type="PackedScene" uid="uid://bw1hhx7lyfonr" path="res://games/asteroids/asteroids.tscn" id="3_mj2jn"]
 [ext_resource type="PackedScene" uid="uid://ckbyiwy0dxbsd" path="res://games/platformer/platformer.tscn" id="4_mj2jn"]
 [ext_resource type="PackedScene" uid="uid://b5lh8cnwu8xhg" path="res://games/ddr/ddr.tscn" id="5_e35lh"]
@@ -11,13 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://bkabgl6p44c5b" path="res://games/space invaders/space_invaders.tscn" id="9_miq82"]
 [ext_resource type="PackedScene" uid="uid://drk2fwkv816qv" path="res://games/crafting/crafting.tscn" id="9_udeyl"]
 
-[node name="GameScene" type="Control"]
+[node name="GameScene" type="Control" node_paths=PackedStringArray("main_camera", "outer_channels", "main_channel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_j5hk1")
+platformer_game = ExtResource("4_mj2jn")
+games = Array[PackedScene]([ExtResource("3_mj2jn"), ExtResource("7_6e45b"), ExtResource("6_kdryc"), ExtResource("9_udeyl"), ExtResource("5_e35lh"), ExtResource("9_miq82")])
+main_camera = NodePath("Camera2D")
+outer_channels = [NodePath("GridContainer/Control"), NodePath("GridContainer/Control2"), NodePath("GridContainer/Control9"), NodePath("GridContainer/Control6"), NodePath("GridContainer/Control4"), NodePath("GridContainer/Control5"), NodePath("GridContainer/Control8"), NodePath("GridContainer/Control7")]
+main_channel = NodePath("GridContainer/Main")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -46,19 +52,17 @@ layout_mode = 2
 channel_name = "Asteroids"
 channel_scene = ExtResource("3_mj2jn")
 
-[node name="ColorRect" type="TextureRect" parent="GridContainer"]
+[node name="Control9" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_po0ka")
-expand_mode = 1
+channel_name = "Asteroids"
+channel_scene = ExtResource("3_mj2jn")
 
 [node name="Control6" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
 channel_name = "DDR"
 channel_scene = ExtResource("5_e35lh")
 
-[node name="Control3" parent="GridContainer" instance=ExtResource("1_mlf6e")]
+[node name="Main" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
 channel_name = "Platformer"
 channel_scene = ExtResource("4_mj2jn")

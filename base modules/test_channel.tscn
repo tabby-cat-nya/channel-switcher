@@ -40,6 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_01b3p")
+expand_mode = 2
 
 [node name="GameViewport" type="SubViewport" parent="."]
 handle_input_locally = false
