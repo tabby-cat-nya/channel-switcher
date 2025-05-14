@@ -6,8 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2rtd"]
 size = Vector2(96, 8)
 
-[node name="LabPlatformer" type="AnimatableBody2D"]
+[node name="LabPlatformer" type="AnimatableBody2D" node_paths=PackedStringArray("collider")]
 script = ExtResource("1_y0tou")
+collider = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
