@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=20 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_oyf6i"]
+[ext_resource type="Texture2D" uid="uid://baf30tscdkl0i" path="res://sprites/tv_remote.png" id="2_7eu3u"]
 [ext_resource type="Texture2D" uid="uid://g5arxk4po7kw" path="res://sprites/platformer_lab_tile.png" id="3_84mot"]
 [ext_resource type="Texture2D" uid="uid://d1mo5ecyjgngw" path="res://sprites/platformer_stone_tile.png" id="4_86tx6"]
 [ext_resource type="PackedScene" uid="uid://q3wdnawp7n63" path="res://games/platformer/lab_platform.tscn" id="4_w58m1"]
 [ext_resource type="Script" uid="uid://43jxroyergh0" path="res://games/platformer/platformerCam.gd" id="5_x2rtd"]
 [ext_resource type="Texture2D" uid="uid://dyjxtuapxfiip" path="res://sprites/box.png" id="6_02uuf"]
+[ext_resource type="PackedScene" uid="uid://bgpoql6pt8pph" path="res://games/platformer/event.tscn" id="8_gqvfi"]
 
 [sub_resource type="Gradient" id="Gradient_1wj3w"]
 offsets = PackedFloat32Array(0.0209205, 1)
@@ -45,6 +47,9 @@ sources/1 = SubResource("TileSetAtlasSource_gqvfi")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86tx6"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7eu3u"]
+size = Vector2(20, 150)
+
 [node name="Platformer" type="Node"]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -65,6 +70,7 @@ texture = SubResource("GradientTexture2D_84mot")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-1552, -504)
 script = ExtResource("1_1wj3w")
+remote_sprite = ExtResource("2_7eu3u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(0.25, 0.25)
@@ -116,5 +122,26 @@ texture = ExtResource("6_02uuf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
 shape = SubResource("RectangleShape2D_86tx6")
+
+[node name="Event" parent="." instance=ExtResource("8_gqvfi")]
+position = Vector2(-1552, -472)
+text = "Aha, I've finaly found a way in! Now time to find some treasure from this abandoned lab..."
+
+[node name="Event2" parent="." instance=ExtResource("8_gqvfi")]
+position = Vector2(-856, 240)
+rotation = 1.57079
+text = "Ooh that looks interesting..."
+
+[node name="Zoomer" type="Area2D" parent="."]
+position = Vector2(-368, 208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zoomer"]
+shape = SubResource("RectangleShape2D_7eu3u")
+
+[node name="TheBitWhereYouTrip" type="Area2D" parent="."]
+position = Vector2(32, 248)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TheBitWhereYouTrip"]
+shape = SubResource("RectangleShape2D_7eu3u")
 
 [connection signal="area_entered" from="Player/hitbox" to="Player" method="_on_hitbox_area_entered"]

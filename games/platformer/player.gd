@@ -4,14 +4,18 @@ signal remote_get
 
 @export var SPEED = 200.0
 @export var JUMP_VELOCITY = -450.0
+@export var remote_sprite : Texture
 var controls_enabled : bool = true
 
+func _ready() -> void:
+	GameManager.allow_movement.connect(change_player_movement)
 
 func _process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
 
 	if(controls_enabled):
 		# Handle jump.
@@ -25,6 +29,8 @@ func _process(delta: float) -> void:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
@@ -32,8 +38,28 @@ func _process(delta: float) -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	#print(area.name)
 	if(area.name == "Box"):
+		#GameManager.play_zoom_out()
+		area.monitoring = false
+		GameManager.show_item("TV Remote", remote_sprite)
+		GameManager.show_chat("Wonder what i can do with this")
+	if(is_instance_of(area,Event)): 
+		#GameManager.play_zoom_out()
+		area.monitoring = false
+		if(area.type == Event.Type.Chat):
+			GameManager.show_chat(area.text)
+		elif(area.type == Event.Type.Item):
+			GameManager.show_item(area.text, area.texture)
+		
+	if(area.name == "Zoomer"):
 		GameManager.play_zoom_out()
+		GameManager.show_chat("I guess it did something..?")
+	#GameManager.play_zoom_out()
+		
 	#box event
 	#laser event
 	#sticky tape event
 	pass # Replace with function body.
+
+func change_player_movement(state : bool):
+	#print(state) #im an idiot :3
+	controls_enabled = state

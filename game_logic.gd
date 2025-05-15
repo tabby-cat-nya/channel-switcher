@@ -10,6 +10,7 @@ enum Gamemode{
 @export var lives = 3
 @export var platformer_game : PackedScene
 @export var games : Array[PackedScene]
+@export var zoom_speed : float = 0.5
 @export_group("Node References")
 @export var main_camera : Camera2D
 @export var outer_channels : Array[Channel]
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 	#if(Input.is_action_just_pressed("ui_down")):
 		#zoom_out()
 	if(zooming_out):
-		var zoom_amount : float = clampf(main_camera.zoom.x - delta,1, 4 )
+		var zoom_amount : float = clampf(main_camera.zoom.x - delta * zoom_speed,1, 4 )
 		main_camera.zoom = Vector2(zoom_amount,zoom_amount)
 
 func zoom_out():

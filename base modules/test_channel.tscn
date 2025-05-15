@@ -24,7 +24,7 @@ frame_3/duration = 1.0
 frame_4/texture = ExtResource("7_5mkxt")
 frame_4/duration = 1.0
 
-[node name="Control" type="Control" node_paths=PackedStringArray("offline_channel_cover", "game_viewport")]
+[node name="Control" type="Control" node_paths=PackedStringArray("offline_channel_cover", "static_channel_cover", "game_viewport")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +36,7 @@ size_flags_vertical = 3
 script = ExtResource("1_r07ln")
 channel_name = "Test"
 offline_channel_cover = NodePath("OfflineChannelCover")
+static_channel_cover = NodePath("Static")
 game_viewport = NodePath("GameViewport")
 
 [node name="GameDisplay" type="TextureRect" parent="."]
