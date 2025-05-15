@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ip51kjj5sl6v"]
+[gd_scene load_steps=3 format=3 uid="uid://ip51kjj5sl6v"]
 
 [ext_resource type="Script" uid="uid://cuct36ytrc3mu" path="res://game_manager.gd" id="1_d8p07"]
+[ext_resource type="Texture2D" uid="uid://r71wb0u4bsxw" path="res://sprites/broken_tv_remote.png" id="2_s0thi"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_d8p07")
+broken_tv_remote = ExtResource("2_s0thi")

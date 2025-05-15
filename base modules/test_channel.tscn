@@ -13,7 +13,7 @@ viewport_path = NodePath("GameViewport")
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_8t1w7"]
 frames = 5
-speed_scale = 20.0
+speed_scale = 9.1
 frame_0/texture = ExtResource("3_w8dl7")
 frame_1/texture = ExtResource("4_sawva")
 frame_1/duration = 1.0
@@ -63,6 +63,7 @@ expand_mode = 2
 
 [node name="Static" type="TextureRect" parent="."]
 visible = false
+modulate = Color(0.226707, 0.226707, 0.226707, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

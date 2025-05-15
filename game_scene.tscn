@@ -100,6 +100,7 @@ offset = Vector2(320, 180)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Chat" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("rich_label")]
+visible = false
 custom_minimum_size = Vector2(500, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -135,6 +136,7 @@ text = "Press Enter..."
 label_settings = SubResource("LabelSettings_daj04")
 
 [node name="Item Get Popup" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("texture_rect", "label")]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -172,6 +174,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("11_j5hk1")
+expand_mode = 2
 stretch_mode = 5
 
 [node name="Label2" type="RichTextLabel" parent="CanvasLayer/Item Get Popup/MarginContainer/VBoxContainer"]

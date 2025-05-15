@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=30 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_oyf6i"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" uid="uid://43jxroyergh0" path="res://games/platformer/platformerCam.gd" id="5_x2rtd"]
 [ext_resource type="Texture2D" uid="uid://dyjxtuapxfiip" path="res://sprites/box.png" id="6_02uuf"]
 [ext_resource type="PackedScene" uid="uid://bgpoql6pt8pph" path="res://games/platformer/event.tscn" id="8_gqvfi"]
+[ext_resource type="Texture2D" uid="uid://b2girwlk6ijy5" path="res://sprites/bigRemote.png" id="10_cpnel"]
+[ext_resource type="Script" uid="uid://bs0xmxrplimpf" path="res://games/platformer/trip_animation.gd" id="10_vuxiy"]
+[ext_resource type="Texture2D" uid="uid://r71wb0u4bsxw" path="res://sprites/broken_tv_remote.png" id="11_vuxiy"]
+[ext_resource type="Script" uid="uid://bl7sx7fl7ye4a" path="res://games/platformer/tv_remote.gd" id="13_7gl5q"]
+[ext_resource type="PackedScene" uid="uid://dv4ex5tshavff" path="res://games/platformer/door.tscn" id="14_yphhh"]
 
 [sub_resource type="Gradient" id="Gradient_1wj3w"]
 offsets = PackedFloat32Array(0.0209205, 1)
@@ -49,6 +54,131 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7eu3u"]
 size = Vector2(20, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpnel"]
+
+[sub_resource type="Animation" id="Animation_7gl5q"]
+resource_name = "trip"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProps/TVRemote:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 272), Vector2(112, 208), Vector2(152, 184), Vector2(200, 208), Vector2(240, 248), Vector2(256.09, 281.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProps/TVRemote:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 18.8496]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProps/TVRemote:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProps/TVRemote:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yphhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProps/TVRemote:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 272)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProps/TVRemote:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProps/TVRemote:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProps/TVRemote:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mauky"]
+_data = {
+&"RESET": SubResource("Animation_yphhh"),
+&"trip": SubResource("Animation_7gl5q")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwuuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_cpnel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vuxiy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Platformer" type="Node"]
 
@@ -97,13 +227,13 @@ tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAA
 tile_set = SubResource("TileSet_x2rtd")
 
 [node name="LabPlatformer" parent="." instance=ExtResource("4_w58m1")]
-position = Vector2(112, 208)
+position = Vector2(128, 208)
 
 [node name="LabPlatformer2" parent="." instance=ExtResource("4_w58m1")]
-position = Vector2(496, 208)
+position = Vector2(512, 208)
 
 [node name="LabPlatformer3" parent="." instance=ExtResource("4_w58m1")]
-position = Vector2(368, 112)
+position = Vector2(400, 112)
 
 [node name="LabPlatformer4" parent="." instance=ExtResource("4_w58m1")]
 position = Vector2(240, 112)
@@ -144,4 +274,40 @@ position = Vector2(32, 248)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TheBitWhereYouTrip"]
 shape = SubResource("RectangleShape2D_7eu3u")
 
+[node name="BrokenRemote" type="Area2D" parent="."]
+position = Vector2(256, 280)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrokenRemote"]
+shape = SubResource("RectangleShape2D_cpnel")
+
+[node name="TripAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mauky")
+}
+script = ExtResource("10_vuxiy")
+
+[node name="AnimationProps" type="Node2D" parent="."]
+
+[node name="TVRemote" type="AnimatedSprite2D" parent="AnimationProps"]
+visible = false
+position = Vector2(40, 272)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_mwuuv")
+frame = 1
+script = ExtResource("13_7gl5q")
+
+[node name="Door" parent="." instance=ExtResource("14_yphhh")]
+position = Vector2(16, 152)
+open_pos_y = 152.0
+close_pos_y = 240.0
+move_speed = 1000.0
+
+[node name="Door2" parent="." instance=ExtResource("14_yphhh")]
+position = Vector2(624, 152)
+open_pos_y = 152.0
+close_pos_y = 240.0
+move_speed = 1000.0
+
 [connection signal="area_entered" from="Player/hitbox" to="Player" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="TheBitWhereYouTrip" to="TripAnimation" method="_on_the_bit_where_you_trip_area_entered"]
+[connection signal="area_entered" from="BrokenRemote" to="AnimationProps/TVRemote" method="_on_broken_remote_area_entered"]

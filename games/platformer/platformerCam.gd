@@ -5,6 +5,7 @@ extends Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.prepare.connect(start_arena_cam)
 	pass # Replace with function body.
 
 
@@ -12,12 +13,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(following):
 		global_position = target.global_position
-	if(Input.is_action_just_pressed("ui_right")):
-		start_arena_cam()
+	#if(Input.is_action_just_pressed("ui_right")):
+		#start_arena_cam()
 	pass
 
 func start_arena_cam():
-	print("weh!")
+	#print("weh!")
 	following = false
 	position = Vector2(320,180)
 	#offset = Vector2(0,0)

@@ -6,6 +6,10 @@ signal zoom_out_signal
 signal allow_movement(bool)
 signal show_chat_signal(String)
 signal show_item_signal(String, Texture)
+signal prepare
+signal gaming
+
+@export var broken_tv_remote : Texture
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,3 +31,14 @@ func show_item(text : String, texture : Texture):
 	
 func change_player_movement(state : bool):
 	allow_movement.emit(state)
+
+func prepare_for_gaming():
+	#switch displays to satic
+	prepare.emit()
+	# as soon as the player dismisses this chat the game is afoot
+	GameManager.show_item("Broken TV Remote", broken_tv_remote)
+	GameManager.show_chat("[color=red]ALERT: Intruder Detected")
+	pass
+
+func actually_gaming():
+	gaming.emit()

@@ -39,20 +39,27 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	#print(area.name)
 	if(area.name == "Box"):
 		#GameManager.play_zoom_out()
-		area.monitoring = false
+		area.queue_free()
 		GameManager.show_item("TV Remote", remote_sprite)
 		GameManager.show_chat("Wonder what i can do with this")
 	if(is_instance_of(area,Event)): 
 		#GameManager.play_zoom_out()
-		area.monitoring = false
+		area.queue_free()
 		if(area.type == Event.Type.Chat):
 			GameManager.show_chat(area.text)
 		elif(area.type == Event.Type.Item):
 			GameManager.show_item(area.text, area.texture)
 		
 	if(area.name == "Zoomer"):
+		area.queue_free()
 		GameManager.play_zoom_out()
 		GameManager.show_chat("I guess it did something..?")
+	if(area.name == "TheBitWhereYouTrip"):
+		area.queue_free()
+		GameManager.show_chat("Ouch, I tripped")
+	if(area.name == "BrokenRemote"):
+		area.queue_free()
+		GameManager.prepare_for_gaming()
 	#GameManager.play_zoom_out()
 		
 	#box event

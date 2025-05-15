@@ -21,6 +21,7 @@ var zooming_out : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.zoom_out_signal.connect(zoom_out)
+	GameManager.prepare.connect(get_ready)
 	if(gamemode == Gamemode.Story):
 		main_camera.zoom = Vector2(3.1,3.1)
 		main_channel.start_channel(platformer_game)
@@ -36,3 +37,7 @@ func _process(delta: float) -> void:
 
 func zoom_out():
 	zooming_out = true
+
+func get_ready():
+	for channel in outer_channels:
+		channel.channel_mode = channel.Mode.Static

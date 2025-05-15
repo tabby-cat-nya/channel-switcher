@@ -10,6 +10,7 @@ var becoming_real : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.gaming.connect(fade_in)
 	starting_y = position.y
 
 
