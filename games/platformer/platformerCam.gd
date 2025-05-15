@@ -11,7 +11,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(following):
-		global_position.x = target.global_position.x
+		global_position = target.global_position
 	if(Input.is_action_just_pressed("ui_right")):
 		start_arena_cam()
 	pass

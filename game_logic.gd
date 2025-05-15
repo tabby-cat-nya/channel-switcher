@@ -15,9 +15,11 @@ enum Gamemode{
 @export var outer_channels : Array[Channel]
 @export var main_channel : Channel
 var gamemode : Gamemode = Gamemode.Story #will be set by manager/menu option
+var zooming_out : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.zoom_out_signal.connect(zoom_out)
 	if(gamemode == Gamemode.Story):
 		main_camera.zoom = Vector2(3.1,3.1)
 		main_channel.start_channel(platformer_game)
@@ -25,4 +27,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	#if(Input.is_action_just_pressed("ui_down")):
+		#zoom_out()
+	if(zooming_out):
+		var zoom_amount : float = clampf(main_camera.zoom.x - delta,1, 4 )
+		main_camera.zoom = Vector2(zoom_amount,zoom_amount)
+
+func zoom_out():
+	zooming_out = true

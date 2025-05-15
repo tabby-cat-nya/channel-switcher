@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://63rik2noj8id"]
+[gd_scene load_steps=10 format=3 uid="uid://63rik2noj8id"]
 
 [ext_resource type="Script" uid="uid://h43mmpjmmir4" path="res://base modules/channel_controller.gd" id="1_r07ln"]
 [ext_resource type="Texture2D" uid="uid://cyo0wl4dt3td1" path="res://sprites/offline_channel.png" id="2_01b3p"]
+[ext_resource type="Texture2D" uid="uid://d2xkwf58dxlvh" path="res://sprites/static/Television_static.gif_frame_00000.jpg" id="3_w8dl7"]
+[ext_resource type="Texture2D" uid="uid://qr2f4j3tofos" path="res://sprites/static/Television_static.gif_frame_00001.jpg" id="4_sawva"]
+[ext_resource type="Texture2D" uid="uid://55teduyyhqhs" path="res://sprites/static/Television_static.gif_frame_00002.jpg" id="5_7qn6j"]
+[ext_resource type="Texture2D" uid="uid://b2x8kmjcv1te" path="res://sprites/static/Television_static.gif_frame_00003.jpg" id="6_2hkew"]
+[ext_resource type="Texture2D" uid="uid://ce44420oiv8ag" path="res://sprites/static/Television_static.gif_frame_00004.jpg" id="7_5mkxt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iix04"]
 viewport_path = NodePath("GameViewport")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_8t1w7"]
+frames = 5
+speed_scale = 20.0
+frame_0/texture = ExtResource("3_w8dl7")
+frame_1/texture = ExtResource("4_sawva")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_7qn6j")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_2hkew")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_5mkxt")
+frame_4/duration = 1.0
 
 [node name="Control" type="Control" node_paths=PackedStringArray("offline_channel_cover", "game_viewport")]
 layout_mode = 3
@@ -40,6 +58,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_01b3p")
+expand_mode = 2
+
+[node name="Static" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AnimatedTexture_8t1w7")
 expand_mode = 2
 
 [node name="GameViewport" type="SubViewport" parent="."]
