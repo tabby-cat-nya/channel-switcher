@@ -3,21 +3,45 @@ extends Node
 signal game_win
 signal game_lose
 
+enum GameStage{
+	Warning, # big red highlights (flashing?) show the player where to avoid
+	Lasers, # the lasers actively firing 
+	None # the starting and ending (offline) state where nothing is happening
+}
+
+
+@export var warning_duration = 5
+@export var laser_duration = 2
 @export_group("Node References")
 @export var score_label : Label
 @export var player : CharacterBody2D
 @export var skip_location : Marker2D
+@export var timer : Timer
+@export var warning_areas : Array[Node2D]
+@export var laser_areas : Array[Area2D]
+
+var game_active : bool = false
+var stage : GameStage = GameStage.None
+var safe_lane : int # 0,1 or 2 - the others will be hit by lasers
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.skip_intro.connect(rec_skip_intro)
 	GameManager.update_data.connect(update_ui)
+	GameManager.start_platformer.connect(start_game)
+	GameManager.end_platformer.connect(end_game)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	for i in range(2):
+		#warning_areas[i].visible = stage == GameStage.Warning and safe_lane!=i
+		#laser_areas[i].visible = stage == GameStage.Lasers and safe_lane!=i
+		pass
+	warning_areas[0].visible = stage == GameStage.Warning
+	laser_areas[0].visible = stage == GameStage.Lasers
+	#todo make sure lasers dont trigger the door/remote/event hitboxes
 
 func update_ui(score : int, lives :int):
 	score_label.text = str(score)
@@ -27,3 +51,22 @@ func rec_skip_intro():
 	player.global_position = skip_location.global_position
 	#maybe bring up an invis wall behind them but it doesnt matter
 	pass
+
+func start_game():
+	game_active = true
+	timer.start(warning_duration)
+	safe_lane = randi_range(0,2)
+	stage = GameStage.Warning
+	pass
+
+func end_game():
+	game_active = false
+	pass
+
+
+func _on_timer_timeout() -> void:
+	if(stage == GameStage.Warning):
+		stage = GameStage.Lasers
+		timer.start(laser_duration)
+	if(stage == GameStage.Lasers):
+		stage = GameStage.None

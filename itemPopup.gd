@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("advance_prompt")):
 		hidePopup()
 		if(label.text == "Broken TV Remote"):
+			label.text = ""
+			print("meow")
 			GameManager.actually_gaming()
 
 func showPopup(item_name : String, item_texture : Texture):

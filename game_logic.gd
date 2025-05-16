@@ -61,6 +61,7 @@ func get_ready():
 
 func start_game():
 	gameplay = true
+	main_channel.start_channel()
 
 func game_loop(delta : float):
 	target_channels += channel_growth_per_min * (delta/60)
@@ -82,7 +83,10 @@ func game_loop(delta : float):
 		var random_channel_number = randi_range(0, offline_channels.size()-1)
 		var random_game = randi_range(0, games.size()-1)
 		#offline_channels[random_channel_number].start_channel()
-		offline_channels[random_channel_number].start_specific_channel(games[random_game])
+		if(offline_channels[random_channel_number] != main_channel):
+			offline_channels[random_channel_number].start_specific_channel(games[random_game])
+		else:
+			main_channel.start_channel()
 
 func rec_channel_win():
 	score += 1

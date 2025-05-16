@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=36 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Script" uid="uid://bs4keltwfbrrn" path="res://games/platformer/platformer.gd" id="1_mauky"]
@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://r71wb0u4bsxw" path="res://sprites/broken_tv_remote.png" id="11_vuxiy"]
 [ext_resource type="Script" uid="uid://bl7sx7fl7ye4a" path="res://games/platformer/tv_remote.gd" id="13_7gl5q"]
 [ext_resource type="PackedScene" uid="uid://dv4ex5tshavff" path="res://games/platformer/door.tscn" id="14_yphhh"]
+[ext_resource type="Texture2D" uid="uid://bvnudttaiaab5" path="res://sprites/platformer_lab_laser.png" id="16_wtveo"]
+[ext_resource type="Texture2D" uid="uid://dyfubdnvunea2" path="res://sprites/whiteSqaure.png" id="17_x1jr7"]
+[ext_resource type="Script" uid="uid://bvldm4nv0g3" path="res://games/platformer/flasher.gd" id="18_x1jr7"]
 
 [sub_resource type="Gradient" id="Gradient_1wj3w"]
 offsets = PackedFloat32Array(0.0209205, 1)
@@ -185,11 +188,17 @@ animations = [{
 font_size = 86
 font_color = Color(1, 1, 1, 0.439216)
 
-[node name="Platformer" type="Node" node_paths=PackedStringArray("score_label", "player", "skip_location")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyyvr"]
+size = Vector2(576, 64)
+
+[node name="Platformer" type="Node" node_paths=PackedStringArray("score_label", "player", "skip_location", "timer", "warning_areas", "laser_areas")]
 script = ExtResource("1_mauky")
 score_label = NodePath("Score")
 player = NodePath("Player")
 skip_location = NodePath("IntroSkipLocation")
+timer = NodePath("Timer")
+warning_areas = [NodePath("Warnings/WarningNode"), NodePath("Warnings/WarningNode2"), NodePath("Warnings/WarningNode3")]
+laser_areas = [NodePath("Lasers/LaserSet"), NodePath("Lasers/LaserSet2"), NodePath("Lasers/LaserSet3")]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)
@@ -330,6 +339,106 @@ horizontal_alignment = 1
 [node name="IntroSkipLocation" type="Marker2D" parent="."]
 position = Vector2(-40, 256)
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Lasers" type="Node2D" parent="."]
+
+[node name="LaserSet" type="Area2D" parent="Lasers"]
+visible = false
+position = Vector2(40, 40)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lasers/LaserSet"]
+position = Vector2(280, 8)
+rotation = 1.57079
+scale = Vector2(2.003, 36)
+texture = ExtResource("16_wtveo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Lasers/LaserSet"]
+position = Vector2(280, 40)
+rotation = 1.57079
+scale = Vector2(2.003, 36)
+texture = ExtResource("16_wtveo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lasers/LaserSet"]
+position = Vector2(280, 24)
+shape = SubResource("RectangleShape2D_gyyvr")
+debug_color = Color(0.977603, 0, 0.402823, 0.42)
+
+[node name="LaserSet2" type="Area2D" parent="Lasers"]
+visible = false
+position = Vector2(40, 136)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lasers/LaserSet2"]
+position = Vector2(280, 8)
+rotation = 1.57079
+scale = Vector2(2.003, 36)
+texture = ExtResource("16_wtveo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Lasers/LaserSet2"]
+position = Vector2(280, 40)
+rotation = 1.57079
+scale = Vector2(2.003, 36)
+texture = ExtResource("16_wtveo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lasers/LaserSet2"]
+position = Vector2(280, 24)
+shape = SubResource("RectangleShape2D_gyyvr")
+debug_color = Color(0.977603, 0, 0.402823, 0.42)
+
+[node name="LaserSet3" type="Area2D" parent="Lasers"]
+visible = false
+position = Vector2(40, 232)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lasers/LaserSet3"]
+position = Vector2(280, 8)
+rotation = 1.57079
+scale = Vector2(2.003, 36)
+texture = ExtResource("16_wtveo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Lasers/LaserSet3"]
+position = Vector2(280, 40)
+rotation = 1.57079
+scale = Vector2(2.003, 36)
+texture = ExtResource("16_wtveo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lasers/LaserSet3"]
+position = Vector2(280, 24)
+shape = SubResource("RectangleShape2D_gyyvr")
+debug_color = Color(0.977603, 0, 0.402823, 0.42)
+
+[node name="Warnings" type="Node2D" parent="."]
+
+[node name="WarningNode" type="Node2D" parent="Warnings"]
+visible = false
+position = Vector2(320, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Warnings/WarningNode"]
+modulate = Color(1, 0, 0, 0.482353)
+scale = Vector2(18, 2)
+texture = ExtResource("17_x1jr7")
+script = ExtResource("18_x1jr7")
+
+[node name="WarningNode2" type="Node2D" parent="Warnings"]
+visible = false
+position = Vector2(320, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="Warnings/WarningNode2"]
+modulate = Color(1, 0, 0, 0.482353)
+scale = Vector2(18, 2)
+texture = ExtResource("17_x1jr7")
+script = ExtResource("18_x1jr7")
+
+[node name="WarningNode3" type="Node2D" parent="Warnings"]
+visible = false
+position = Vector2(320, 256)
+
+[node name="Sprite2D" type="Sprite2D" parent="Warnings/WarningNode3"]
+modulate = Color(1, 0, 0, 0.482353)
+scale = Vector2(18, 2)
+texture = ExtResource("17_x1jr7")
+script = ExtResource("18_x1jr7")
+
 [connection signal="area_entered" from="Player/hitbox" to="Player" method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="TheBitWhereYouTrip" to="TripAnimation" method="_on_the_bit_where_you_trip_area_entered"]
 [connection signal="area_entered" from="BrokenRemote" to="AnimationProps/TVRemote" method="_on_broken_remote_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
