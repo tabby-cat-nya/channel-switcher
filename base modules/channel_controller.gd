@@ -1,8 +1,7 @@
 extends Control
 class_name Channel
 
-signal channel_win
-signal channel_lose
+
 
 enum Mode{
 	Online,
@@ -34,12 +33,12 @@ func _process(delta: float) -> void:
 	static_channel_cover.visible = channel_mode == Mode.Static
 
 func start_channel():
-	var new_scene = channel_scene.instantiate()
-	game_viewport.add_child(new_scene)
-	channel_mode = Mode.Online
+	start_specific_channel(channel_scene)
 
 func start_specific_channel(scene : PackedScene):
 	var new_scene = scene.instantiate()
+	new_scene.game_win.connect(win_channel)
+	new_scene.game_lose.connect(lose_channel)
 	game_viewport.add_child(new_scene)
 	channel_mode = Mode.Online
 
@@ -54,9 +53,9 @@ func make_offline():
 	channel_mode = Mode.Offline
 
 func win_channel():
-	channel_win.emit()
+	GameManager.channel_win.emit()
 	end_channel()
 
 func lose_channel():
-	channel_lose.emit()
+	GameManager.channel_lose.emit()
 	end_channel()

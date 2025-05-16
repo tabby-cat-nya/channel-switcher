@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkabgl6p44c5b"]
+[gd_scene load_steps=10 format=3 uid="uid://bkabgl6p44c5b"]
 
 [ext_resource type="Texture2D" uid="uid://dqorec3q3h3pp" path="res://sprites/asteroidsShip.png" id="1_8m3yy"]
 [ext_resource type="Script" uid="uid://c1e46eu5tbni0" path="res://games/space invaders/ship.gd" id="1_jsxp6"]
+[ext_resource type="Script" uid="uid://0v0y62pyhpq4" path="res://games/space invaders/space_invaders.gd" id="1_k5cbn"]
 [ext_resource type="Texture2D" uid="uid://by327tfhk6xrs" path="res://sprites/invadersBarrier.png" id="2_jsxp6"]
 
 [sub_resource type="Gradient" id="Gradient_4laqq"]
@@ -24,6 +25,7 @@ radius = 24.1868
 size = Vector2(56, 28)
 
 [node name="SpaceInvaders" type="Node"]
+script = ExtResource("1_k5cbn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=32 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
+[ext_resource type="Script" uid="uid://bs4keltwfbrrn" path="res://games/platformer/platformer.gd" id="1_mauky"]
 [ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_oyf6i"]
 [ext_resource type="Texture2D" uid="uid://baf30tscdkl0i" path="res://sprites/tv_remote.png" id="2_7eu3u"]
 [ext_resource type="Texture2D" uid="uid://g5arxk4po7kw" path="res://sprites/platformer_lab_tile.png" id="3_84mot"]
@@ -57,6 +58,57 @@ size = Vector2(20, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpnel"]
 
+[sub_resource type="Animation" id="Animation_yphhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationProps/TVRemote:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 272)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationProps/TVRemote:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationProps/TVRemote:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationProps/TVRemote:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_7gl5q"]
 resource_name = "trip"
 length = 0.8
@@ -109,57 +161,6 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_yphhh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationProps/TVRemote:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(40, 272)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationProps/TVRemote:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationProps/TVRemote:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationProps/TVRemote:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mauky"]
 _data = {
 &"RESET": SubResource("Animation_yphhh"),
@@ -180,7 +181,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Platformer" type="Node"]
+[sub_resource type="LabelSettings" id="LabelSettings_yphhh"]
+font_size = 86
+font_color = Color(1, 1, 1, 0.439216)
+
+[node name="Platformer" type="Node" node_paths=PackedStringArray("score_label", "player", "skip_location")]
+script = ExtResource("1_mauky")
+score_label = NodePath("Score")
+player = NodePath("Player")
+skip_location = NodePath("IntroSkipLocation")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)
@@ -306,7 +315,20 @@ move_speed = 1000.0
 position = Vector2(624, 152)
 open_pos_y = 152.0
 close_pos_y = 240.0
+open = false
 move_speed = 1000.0
+
+[node name="Score" type="Label" parent="."]
+offset_left = 208.0
+offset_top = 160.0
+offset_right = 432.0
+offset_bottom = 279.0
+text = "00"
+label_settings = SubResource("LabelSettings_yphhh")
+horizontal_alignment = 1
+
+[node name="IntroSkipLocation" type="Marker2D" parent="."]
+position = Vector2(-40, 256)
 
 [connection signal="area_entered" from="Player/hitbox" to="Player" method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="TheBitWhereYouTrip" to="TripAnimation" method="_on_the_bit_where_you_trip_area_entered"]

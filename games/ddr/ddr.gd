@@ -1,5 +1,7 @@
 extends Node
 
+signal game_win
+signal game_lose
 
 @export var note_frequency : float = 2
 @export var paths : Array[Node2D]

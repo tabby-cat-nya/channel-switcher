@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bw1hhx7lyfonr"]
+[gd_scene load_steps=8 format=3 uid="uid://bw1hhx7lyfonr"]
 
 [ext_resource type="Script" uid="uid://brih2jftm2tsa" path="res://games/asteroids/ship_controller.gd" id="1_6dc0m"]
+[ext_resource type="Script" uid="uid://carkc2diu0xwd" path="res://games/asteroids/asteroids.gd" id="1_j0tb1"]
 [ext_resource type="Texture2D" uid="uid://dqorec3q3h3pp" path="res://sprites/asteroidsShip.png" id="2_j0tb1"]
 
 [sub_resource type="Gradient" id="Gradient_6dc0m"]
@@ -20,6 +21,7 @@ noise = SubResource("FastNoiseLite_j0tb1")
 radius = 26.0192
 
 [node name="Asteroids" type="Node"]
+script = ExtResource("1_j0tb1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

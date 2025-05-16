@@ -1,5 +1,8 @@
 extends Node
 
+signal game_win
+signal game_lose
+
 @export var reaction_window : float = 1
 @export_group("Node References")
 @export var prepare_node : Control

@@ -1,5 +1,8 @@
 extends Node
 
+signal game_win
+signal game_lose
+
 @export var code_length : int = 8 
 
 @export_group("Node References")
@@ -49,7 +52,10 @@ func enter_number(number : int):
 		pick_new_number()
 	else:
 		#womp womp (lose channel)
+		game_lose.emit()
 		pass
+	if(numbers_typed >= code_length):
+		game_win.emit()
 
 func pick_new_number():
 	var new_number = current_number

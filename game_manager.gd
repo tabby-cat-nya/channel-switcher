@@ -8,8 +8,13 @@ signal show_chat_signal(String)
 signal show_item_signal(String, Texture)
 signal prepare
 signal gaming
+signal channel_win
+signal channel_lose
+signal update_data(score : int, lives : int)
+signal skip_intro
 
 @export var broken_tv_remote : Texture
+var are_we_skipping_intro : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,3 +47,6 @@ func prepare_for_gaming():
 
 func actually_gaming():
 	gaming.emit()
+
+func send_update_data(score : int, lives: int):
+	update_data.emit(score, lives)

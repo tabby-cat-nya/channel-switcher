@@ -1,4 +1,8 @@
 extends Node
+
+signal game_win
+signal game_lose
+
 @export var keys : Array[String]
 @export var time_limit : float = 25
 

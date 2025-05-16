@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnpyrh4c6a7cg"]
+[gd_scene load_steps=8 format=3 uid="uid://cnpyrh4c6a7cg"]
 
 [ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_jfgig"]
+[ext_resource type="Script" uid="uid://dld4egumb2u0o" path="res://games/bullet_hell/bullet_hell.gd" id="1_uvm3w"]
 [ext_resource type="Script" uid="uid://c100m60xe4k3r" path="res://games/bullet_hell/bulletHellMovement.gd" id="1_x66ke"]
 
 [sub_resource type="Gradient" id="Gradient_x66ke"]
@@ -18,6 +19,7 @@ noise = SubResource("FastNoiseLite_uvm3w")
 size = Vector2(38, 38)
 
 [node name="BulletHell" type="Node"]
+script = ExtResource("1_uvm3w")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

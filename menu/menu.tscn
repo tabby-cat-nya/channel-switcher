@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://0ajx46iu2l51"]
+[gd_scene load_steps=4 format=3 uid="uid://0ajx46iu2l51"]
+
+[ext_resource type="Script" uid="uid://bjkqa4cowhacd" path="res://menu/menu.gd" id="1_j0t7f"]
 
 [sub_resource type="Gradient" id="Gradient_jc4t8"]
 interpolation_color_space = 2
@@ -21,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_j0t7f")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -65,15 +68,15 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="StoryButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="IntroButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 0.403922, 1, 1)
 layout_mode = 2
-text = "Play Story"
+text = "Play Intro"
 
-[node name="EndlessButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SkipButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 0.403922, 1, 1)
 layout_mode = 2
-text = "Play Endless"
+text = "Skip Intro"
 
 [node name="CreditsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 modulate = Color(0.388235, 1, 1, 1)
@@ -84,3 +87,6 @@ text = "Credits"
 modulate = Color(1, 0.346577, 0.280009, 1)
 layout_mode = 2
 text = "Exit Game"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/IntroButton" to="." method="_on_intro_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=15 format=3 uid="uid://ct8axfbvd2wn4"]
 
 [ext_resource type="Script" uid="uid://d2q6xfk8htbyy" path="res://game_logic.gd" id="1_j5hk1"]
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
-[ext_resource type="PackedScene" uid="uid://ch1x8pfdu2b1g" path="res://test_game.tscn" id="2_mixcd"]
 [ext_resource type="PackedScene" uid="uid://bw1hhx7lyfonr" path="res://games/asteroids/asteroids.tscn" id="3_mj2jn"]
 [ext_resource type="PackedScene" uid="uid://ckbyiwy0dxbsd" path="res://games/platformer/platformer.tscn" id="4_mj2jn"]
 [ext_resource type="PackedScene" uid="uid://b5lh8cnwu8xhg" path="res://games/ddr/ddr.tscn" id="5_e35lh"]
@@ -53,7 +52,7 @@ columns = 3
 
 [node name="Control" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
-channel_scene = ExtResource("2_mixcd")
+channel_scene = ExtResource("7_6e45b")
 
 [node name="Control2" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
