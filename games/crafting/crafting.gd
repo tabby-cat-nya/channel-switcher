@@ -41,8 +41,7 @@ func enter_letter(letter : String):
 			var randomPixel : int = randi_range(0,pixels.size()-1)
 			pixels[randomPixel].deactivate()
 	if count_activated():
-		pass
-		#winner
+		game_win.emit()
 
 func count_activated() -> bool:
 	var count : int = 0
@@ -59,7 +58,7 @@ func _process(delta: float) -> void:
 	current_time -= delta
 	timer_progress.value = current_time/time_limit
 	if current_time <= 0:
-		pass
+		game_lose.emit()
 		#loser
 	
 	if Input.is_action_just_pressed("crafting_e"):

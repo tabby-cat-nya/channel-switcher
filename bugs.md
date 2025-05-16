@@ -9,3 +9,6 @@
 # Minor
 - [ ] score text is infront of the player
 - [ ] warning areas are infront of the player
+
+# Ideas
+- [ ] Have tick/cross effect appear on a won/failed game

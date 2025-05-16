@@ -68,8 +68,8 @@ func game_loop(delta : float):
 	var online_channels : Array[Channel]
 	var offline_channels : Array[Channel]
 	# sort all the channels into online and offline
-	#if main_channel.channel_mode == Channel.Mode.Online:
-	if main_channel.platformer_online:
+	if main_channel.channel_mode == Channel.Mode.Online:
+	#if main_channel.platformer_online:
 		online_channels.append(main_channel)
 	else: 
 		online_channels.append(main_channel)
