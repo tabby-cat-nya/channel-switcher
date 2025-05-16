@@ -37,7 +37,7 @@ func prepare_for_gaming():
 	prepare.emit()
 	# as soon as the player dismisses this chat the game is afoot
 	GameManager.show_item("Broken TV Remote", broken_tv_remote)
-	GameManager.show_chat("[color=red]ALERT: Intruder Detected")
+	GameManager.show_chat("[color=red]ALERT: Intruder Detected... Initiating Security Protocol...")
 	pass
 
 func actually_gaming():

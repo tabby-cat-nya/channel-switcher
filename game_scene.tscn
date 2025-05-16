@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=16 format=3 uid="uid://ct8axfbvd2wn4"]
 
 [ext_resource type="Script" uid="uid://d2q6xfk8htbyy" path="res://game_logic.gd" id="1_j5hk1"]
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bkabgl6p44c5b" path="res://games/space invaders/space_invaders.tscn" id="9_miq82"]
 [ext_resource type="PackedScene" uid="uid://drk2fwkv816qv" path="res://games/crafting/crafting.tscn" id="9_udeyl"]
 [ext_resource type="Texture2D" uid="uid://baf30tscdkl0i" path="res://sprites/tv_remote.png" id="11_j5hk1"]
+[ext_resource type="Script" uid="uid://ca41i40uerrbr" path="res://games/platformer/platformer_channel.gd" id="11_mlphb"]
 [ext_resource type="Script" uid="uid://dgq2y6wjlye6" path="res://chatboxController.gd" id="11_ueiaa"]
 [ext_resource type="Script" uid="uid://dnptjh111yd8i" path="res://itemPopup.gd" id="12_daj04"]
 
@@ -71,6 +72,7 @@ channel_scene = ExtResource("5_e35lh")
 
 [node name="Main" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
+script = ExtResource("11_mlphb")
 channel_name = "Platformer"
 channel_scene = ExtResource("4_mj2jn")
 
