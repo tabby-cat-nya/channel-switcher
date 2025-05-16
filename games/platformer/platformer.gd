@@ -35,12 +35,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	for i in range(2):
-		#warning_areas[i].visible = stage == GameStage.Warning and safe_lane!=i
-		#laser_areas[i].visible = stage == GameStage.Lasers and safe_lane!=i
+	for i in range(3):
+		warning_areas[i].visible = stage == GameStage.Warning and safe_lane!=i
+		laser_areas[i].visible = stage == GameStage.Lasers and safe_lane!=i
+		if(stage == GameStage.Lasers and safe_lane!=i):
+			if laser_areas[i].get_overlapping_areas().size()>0:
+				end_game()
+				game_lose.emit()
 		pass
-	warning_areas[0].visible = stage == GameStage.Warning
-	laser_areas[0].visible = stage == GameStage.Lasers
+	#warning_areas[0].visible = stage == GameStage.Warning
+	#laser_areas[0].visible = stage == GameStage.Lasers
 	#todo make sure lasers dont trigger the door/remote/event hitboxes
 
 func update_ui(score : int, lives :int):
@@ -60,6 +64,7 @@ func start_game():
 	pass
 
 func end_game():
+	# set stage back to none?
 	game_active = false
 	pass
 
@@ -68,5 +73,10 @@ func _on_timer_timeout() -> void:
 	if(stage == GameStage.Warning):
 		stage = GameStage.Lasers
 		timer.start(laser_duration)
-	if(stage == GameStage.Lasers):
+	elif(stage == GameStage.Lasers):
 		stage = GameStage.None
+		if(game_active):
+			game_win.emit()
+		end_game()
+		
+		#if i havent died yet, then win

@@ -15,7 +15,7 @@ signal game_over(score : int)
 @export var games : Array[PackedScene]
 @export var zoom_speed : float = 0.5
 @export_group("Channel Rules")
-@export var target_channels : float = 2.5
+@export var target_channels : float = 1.5
 @export var channel_growth_per_min : float = 4
 
 @export_group("Node References")
@@ -68,14 +68,15 @@ func game_loop(delta : float):
 	var online_channels : Array[Channel]
 	var offline_channels : Array[Channel]
 	# sort all the channels into online and offline
-	if main_channel.channel_mode == Channel.Mode.Online:
+	#if main_channel.channel_mode == Channel.Mode.Online:
+	if main_channel.platformer_online:
 		online_channels.append(main_channel)
 	else: 
 		online_channels.append(main_channel)
 	for channel in outer_channels:
 		if(channel.channel_mode == Channel.Mode.Online):
 			online_channels.append(channel)
-		else:
+		elif(!channel.dead_channel):
 			offline_channels.append(channel)
 	# if i need to switch a channel online, then pick one and run tis start channel method
 	#print("Online Channels: " + str(online_channels.size()))
@@ -84,7 +85,9 @@ func game_loop(delta : float):
 		var random_game = randi_range(0, games.size()-1)
 		#offline_channels[random_channel_number].start_channel()
 		if(offline_channels[random_channel_number] != main_channel):
-			offline_channels[random_channel_number].start_specific_channel(games[random_game])
+			offline_channels[random_channel_number].start_channel()
+			#picking a random game is cool but we cant have two of the same!
+			#offline_channels[random_channel_number].start_specific_channel(games[random_game])
 		else:
 			main_channel.start_channel()
 

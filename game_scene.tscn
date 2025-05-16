@@ -53,6 +53,7 @@ columns = 3
 [node name="Control" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
 channel_scene = ExtResource("7_6e45b")
+dead_channel = true
 
 [node name="Control2" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
@@ -63,6 +64,7 @@ channel_scene = ExtResource("3_mj2jn")
 layout_mode = 2
 channel_name = "Asteroids"
 channel_scene = ExtResource("3_mj2jn")
+dead_channel = true
 
 [node name="Control6" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2

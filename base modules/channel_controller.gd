@@ -12,12 +12,15 @@ enum Mode{
 
 @export var channel_name : String
 @export var channel_scene : PackedScene
+@export var dead_channel : bool
 @export_group("Node References")
 @export var offline_channel_cover : TextureRect
 @export var static_channel_cover : TextureRect
 @export var game_viewport : SubViewport
 
 var channel_mode : Mode = Mode.Offline
+
+
 
 func _ready() -> void:
 	#var new_scene = channel_scene.instantiate()

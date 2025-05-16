@@ -1,8 +1,9 @@
 # High Priority
 - [ ] remote breaking animation not working
 - [x] pressing enter causes the platformer channel to restart event after the intiial prompt dismissial
-- [ ] lasers not appearing 
-- [ ] only 1 lane getting warning
+- [x] lasers not appearing 
+- [x] only 1 lane getting warning
+- [ ] platformer works once but having trouble getting it to replay
 
 
 # Minor
