@@ -9,14 +9,14 @@
 - [ ] Game Over
 
 # High Priority
-- [ ] remote breaking animation not working
+- [x] remote breaking animation not working
 - [x] pressing enter causes the platformer channel to restart event after the intiial prompt dismissial
 - [x] lasers not appearing 
 - [x] only 1 lane getting warning
 - [x] platformer works once but having trouble getting it to replay
 - [ ] menu credits 
 - [ ] menu exit? (not visible in web build)
-- [ ] still need a player!!! (make it the cat from catdash?)
+- [x] still need a player!!! (make it the cat from catdash?)
 
 ## Publishing
 - [ ] check if web build works well
@@ -27,7 +27,7 @@
 # Minor
 - [x] score text is infront of the player
 - [x] warning areas are infront of the player
-- [ ] make score and life only appear when game starts
+- [x] make score and life only appear when game starts
 
 # Ideas
 - [x] Have tick/cross effect appear on a won/failed game
