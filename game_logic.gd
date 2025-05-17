@@ -111,7 +111,7 @@ func rec_channel_lose():
 
 func game_over_gg():
 	zoom_in()
-	game_over.emit()
+	
 	gameplay = false
 	main_channel.end_channel()
 	for channel in outer_channels:

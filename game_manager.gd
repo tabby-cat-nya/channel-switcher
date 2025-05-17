@@ -14,6 +14,7 @@ signal update_data(score : int, lives : int)
 signal skip_intro
 signal start_platformer
 signal end_platformer
+signal game_over
 
 @export var broken_tv_remote : Texture
 var are_we_skipping_intro : bool = false
@@ -53,3 +54,6 @@ func actually_gaming():
 
 func send_update_data(score : int, lives: int):
 	update_data.emit(score, lives)
+
+func send_game_over():
+	game_over.emit()

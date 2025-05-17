@@ -1,11 +1,11 @@
-[gd_scene load_steps=39 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=47 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Script" uid="uid://bs4keltwfbrrn" path="res://games/platformer/platformer.gd" id="1_mauky"]
-[ext_resource type="Texture2D" uid="uid://diilj7xuttpqu" path="res://icon.svg" id="1_oyf6i"]
 [ext_resource type="Texture2D" uid="uid://baf30tscdkl0i" path="res://sprites/tv_remote.png" id="2_7eu3u"]
 [ext_resource type="Texture2D" uid="uid://g5arxk4po7kw" path="res://sprites/platformer_lab_tile.png" id="3_84mot"]
 [ext_resource type="Texture2D" uid="uid://d1mo5ecyjgngw" path="res://sprites/platformer_stone_tile.png" id="4_86tx6"]
+[ext_resource type="Texture2D" uid="uid://t4vhpibk2yb5" path="res://sprites/neko.png" id="4_g0mja"]
 [ext_resource type="PackedScene" uid="uid://q3wdnawp7n63" path="res://games/platformer/lab_platform.tscn" id="4_w58m1"]
 [ext_resource type="Script" uid="uid://43jxroyergh0" path="res://games/platformer/platformerCam.gd" id="5_x2rtd"]
 [ext_resource type="Texture2D" uid="uid://dyjxtuapxfiip" path="res://sprites/box.png" id="6_02uuf"]
@@ -31,6 +31,73 @@ gradient = SubResource("Gradient_1wj3w")
 width = 300
 height = 180
 fill_from = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fc0x"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i68h"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftlpv"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hkwn"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj7n8"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wy10"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we8k4"]
+atlas = ExtResource("4_g0mja")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i6xil"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fc0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i68h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftlpv")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hkwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj7n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wy10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we8k4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyf6i"]
 size = Vector2(32, 32)
@@ -219,14 +286,16 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 texture = SubResource("GradientTexture2D_84mot")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player_sprite")]
 position = Vector2(-1552, -504)
 script = ExtResource("1_1wj3w")
 remote_sprite = ExtResource("2_7eu3u")
+player_sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_oyf6i")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Player"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_i6xil")
+animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_oyf6i")

@@ -5,6 +5,7 @@ signal remote_get
 @export var SPEED = 200.0
 @export var JUMP_VELOCITY = -450.0
 @export var remote_sprite : Texture
+@export var player_sprite : AnimatedSprite2D
 var controls_enabled : bool = true
 
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		player_sprite.play("jump")
 
 
 	if(controls_enabled):
@@ -29,10 +31,22 @@ func _process(delta: float) -> void:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		if(direction < 0):
+			player_sprite.flip_h = true
+		elif(direction>0):
+			player_sprite.flip_h = false
+			
+		if(direction != 0 and is_on_floor()):
+			player_sprite.play("run")
+		elif(is_on_floor()):
+			player_sprite.play("idle")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

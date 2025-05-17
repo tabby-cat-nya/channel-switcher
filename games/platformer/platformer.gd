@@ -31,6 +31,7 @@ func _ready() -> void:
 	GameManager.update_data.connect(update_ui)
 	GameManager.start_platformer.connect(start_game)
 	GameManager.end_platformer.connect(end_game)
+	GameManager.game_over.connect(display_game_over)
 	pass # Replace with function body.
 
 
@@ -83,3 +84,7 @@ func _on_timer_timeout() -> void:
 		end_game()
 		
 		#if i havent died yet, then win
+
+func display_game_over():
+	stage = GameStage.None
+	#game_active = true
