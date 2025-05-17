@@ -13,6 +13,8 @@ func _process(delta: float) -> void:
 		modulate = Color.WHITE
 	else:
 		modulate = Color.DIM_GRAY
+	result_realness -= delta
+	result_cover.modulate = Color(1,1,1,result_realness)
 
 func start_specific_channel(scene : PackedScene):
 	var new_scene = scene.instantiate()

@@ -12,14 +12,17 @@ enum Mode{
 
 @export var channel_name : String
 @export var channel_scene : PackedScene
-@export var dead_channel : bool
+@export var dead_channel : bool # mark channel as disabled so game logic doesnt try to switch it on
+@export var win_result_tex : Texture
+@export var lose_result_tex : Texture
 @export_group("Node References")
 @export var offline_channel_cover : TextureRect
 @export var static_channel_cover : TextureRect
 @export var game_viewport : SubViewport
+@export var result_cover : TextureRect
 
 var channel_mode : Mode = Mode.Offline
-
+var result_realness : float = 0
 
 
 func _ready() -> void:
@@ -34,6 +37,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	offline_channel_cover.visible = channel_mode == Mode.Offline
 	static_channel_cover.visible = channel_mode == Mode.Static
+	result_realness -= delta
+	result_cover.modulate = Color(1,1,1,result_realness)
 
 func start_channel():
 	start_specific_channel(channel_scene)
@@ -57,8 +62,12 @@ func make_offline():
 
 func win_channel():
 	GameManager.channel_win.emit()
+	result_cover.texture = win_result_tex
+	result_realness = 2
 	end_channel()
 
 func lose_channel():
 	GameManager.channel_lose.emit()
+	result_cover.texture = lose_result_tex
+	result_realness = 2
 	end_channel()
