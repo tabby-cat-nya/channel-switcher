@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://63rik2noj8id"]
+[gd_scene load_steps=14 format=3 uid="uid://63rik2noj8id"]
 
 [ext_resource type="Script" uid="uid://h43mmpjmmir4" path="res://base modules/channel_controller.gd" id="1_r07ln"]
 [ext_resource type="Texture2D" uid="uid://cyo0wl4dt3td1" path="res://sprites/offline_channel.png" id="2_01b3p"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b2x8kmjcv1te" path="res://sprites/static/Television_static.gif_frame_00003.jpg" id="6_2hkew"]
 [ext_resource type="Texture2D" uid="uid://ce44420oiv8ag" path="res://sprites/static/Television_static.gif_frame_00004.jpg" id="7_5mkxt"]
 [ext_resource type="Texture2D" uid="uid://c70rsm4qog0st" path="res://sprites/cross.png" id="8_sawva"]
+[ext_resource type="AudioStream" uid="uid://lyi0tsusixqm" path="res://sounds/win.wav" id="10_5mkxt"]
+[ext_resource type="AudioStream" uid="uid://bslw2ywaqj57h" path="res://sounds/lose.wav" id="11_8t1w7"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iix04"]
 viewport_path = NodePath("GameViewport")
@@ -26,7 +28,7 @@ frame_3/duration = 1.0
 frame_4/texture = ExtResource("7_5mkxt")
 frame_4/duration = 1.0
 
-[node name="Control" type="Control" node_paths=PackedStringArray("offline_channel_cover", "static_channel_cover", "game_viewport", "result_cover")]
+[node name="Control" type="Control" node_paths=PackedStringArray("offline_channel_cover", "static_channel_cover", "game_viewport", "result_cover", "win_player", "lose_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +45,8 @@ offline_channel_cover = NodePath("OfflineChannelCover")
 static_channel_cover = NodePath("Static")
 game_viewport = NodePath("GameViewport")
 result_cover = NodePath("GameResult")
+win_player = NodePath("winSound")
+lose_player = NodePath("loseSound")
 
 [node name="GameDisplay" type="TextureRect" parent="."]
 layout_mode = 1
@@ -95,3 +99,9 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
+
+[node name="winSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_5mkxt")
+
+[node name="loseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_8t1w7")

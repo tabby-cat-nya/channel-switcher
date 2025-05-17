@@ -2,6 +2,7 @@ extends PanelContainer
 
 @export var texture_rect : TextureRect
 @export var label : RichTextLabel
+@export var item_get_sound : AudioStreamPlayer
 var active : bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,7 @@ func showPopup(item_name : String, item_texture : Texture):
 	label.text = item_name
 	texture_rect.texture = item_texture
 	active = true
+	item_get_sound.play()
 	GameManager.change_player_movement(false)
 	
 func hidePopup():

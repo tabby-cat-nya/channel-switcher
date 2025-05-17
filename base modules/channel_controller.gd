@@ -20,6 +20,8 @@ enum Mode{
 @export var static_channel_cover : TextureRect
 @export var game_viewport : SubViewport
 @export var result_cover : TextureRect
+@export var win_player : AudioStreamPlayer
+@export var lose_player : AudioStreamPlayer
 
 var channel_mode : Mode = Mode.Offline
 var result_realness : float = 0
@@ -64,10 +66,12 @@ func win_channel():
 	GameManager.channel_win.emit()
 	result_cover.texture = win_result_tex
 	result_realness = 2
+	win_player.play()
 	end_channel()
 
 func lose_channel():
 	GameManager.channel_lose.emit()
 	result_cover.texture = lose_result_tex
 	result_realness = 2
+	lose_player.play()
 	end_channel()

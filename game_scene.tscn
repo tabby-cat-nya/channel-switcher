@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=18 format=3 uid="uid://ct8axfbvd2wn4"]
 
 [ext_resource type="Script" uid="uid://d2q6xfk8htbyy" path="res://game_logic.gd" id="1_j5hk1"]
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bcu5svl5gjd4r" path="res://games/reaction/reaction.tscn" id="11_opqoc"]
 [ext_resource type="Script" uid="uid://dgq2y6wjlye6" path="res://chatboxController.gd" id="11_ueiaa"]
 [ext_resource type="Script" uid="uid://dnptjh111yd8i" path="res://itemPopup.gd" id="12_daj04"]
+[ext_resource type="AudioStream" uid="uid://bjuvcg5wvqpuu" path="res://sounds/newthingget.ogg" id="15_opqoc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_daj04"]
 font_size = 11
@@ -144,7 +145,7 @@ size_flags_vertical = 8
 text = "Press Enter..."
 label_settings = SubResource("LabelSettings_daj04")
 
-[node name="Item Get Popup" type="PanelContainer" parent="Popup and Chat" node_paths=PackedStringArray("texture_rect", "label")]
+[node name="Item Get Popup" type="PanelContainer" parent="Popup and Chat" node_paths=PackedStringArray("texture_rect", "label", "item_get_sound")]
 visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
@@ -161,6 +162,7 @@ grow_vertical = 2
 script = ExtResource("12_daj04")
 texture_rect = NodePath("MarginContainer/VBoxContainer/TextureRect")
 label = NodePath("MarginContainer/VBoxContainer/Label2")
+item_get_sound = NodePath("itemGetSound")
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup and Chat/Item Get Popup"]
 layout_mode = 2
@@ -199,6 +201,10 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Press Enter..."
 label_settings = SubResource("LabelSettings_daj04")
+
+[node name="itemGetSound" type="AudioStreamPlayer" parent="Popup and Chat/Item Get Popup"]
+stream = ExtResource("15_opqoc")
+volume_db = -8.321
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 visible = false
