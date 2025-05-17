@@ -1,33 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://drk2fwkv816qv"]
+[gd_scene load_steps=6 format=3 uid="uid://drk2fwkv816qv"]
 
 [ext_resource type="Script" uid="uid://b4ps00o1tpuft" path="res://games/crafting/crafting.gd" id="1_51qhm"]
+[ext_resource type="Texture2D" uid="uid://cfyjy4tgni7oe" path="res://games/crafting/craftingbg.tres" id="2_51qhm"]
 
-[sub_resource type="Gradient" id="Gradient_51qhm"]
-colors = PackedColorArray(0.774014, 0.581042, 1, 1, 1, 0.595754, 0.986362, 1)
+[sub_resource type="Gradient" id="Gradient_8e2i7"]
+colors = PackedColorArray(0.392157, 0.588235, 1, 1, 1, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_8e2i7"]
-noise_type = 0
-fractal_type = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_26tlc"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_26tlc"]
+gradient = SubResource("Gradient_8e2i7")
 width = 360
 height = 180
-color_ramp = SubResource("Gradient_51qhm")
-noise = SubResource("FastNoiseLite_8e2i7")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_51qhm"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="Crafting" type="Node" node_paths=PackedStringArray("pixel_grid", "timer_progress")]
 script = ExtResource("1_51qhm")
 keys = Array[String](["Q", "E", "R", "T", "Y", "U", "F", "M"])
 pixel_grid = NodePath("CenterContainer/VBoxContainer/GridContainer")
-timer_progress = NodePath("CenterContainer/VBoxContainer/Timer")
+timer_progress = NodePath("TextureProgressBar")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_26tlc")
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_26tlc")
+texture_progress = ExtResource("2_51qhm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(0.564962, 0.564962, 0.564962, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_51qhm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -44,6 +62,14 @@ layout_mode = 2
 columns = 5
 
 [node name="Timer" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 max_value = 1.0
 step = 0.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press the Letters!"
+label_settings = SubResource("LabelSettings_51qhm")
+horizontal_alignment = 1
+vertical_alignment = 1

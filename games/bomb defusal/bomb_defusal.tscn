@@ -73,3 +73,27 @@ show_percentage = false
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 180)
 ignore_rotation = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 429.0
+offset_top = 338.0
+offset_right = 746.0
+offset_bottom = 416.0
+rotation = -1.57079
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[shake]Type the Code"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 211.0
+offset_top = 23.0
+offset_right = 528.0
+offset_bottom = 101.0
+rotation = 1.57079
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[shake]Type the Code"
+horizontal_alignment = 1
+vertical_alignment = 1

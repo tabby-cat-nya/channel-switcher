@@ -2,10 +2,11 @@
 - [x] Finish Platformer
 - [ ] Finish Space Invaders
 - [ ] Finish Bullet Hell
-- [ ] Finish Bomb Defusal
-- [ ] Finish DDR
+- [x] Finish Bomb Defusal
+- [x] Finish DDR
 - [ ] Finish Asteroids
-- [ ] Finish Crafting
+- [x] Finish Crafting
+- [ ] Game Over
 
 # High Priority
 - [ ] remote breaking animation not working
@@ -13,13 +14,28 @@
 - [x] lasers not appearing 
 - [x] only 1 lane getting warning
 - [x] platformer works once but having trouble getting it to replay
+- [ ] menu credits 
+- [ ] menu exit? (not visible in web build)
+- [ ] still need a player!!! (make it the cat from catdash?)
+
+## Publishing
+- [ ] check if web build works well
+- [ ] finish itch page
+- [ ] upload game and possible executable
+- [ ] submit to jam!
 
 # Minor
-- [ ] score text is infront of the player
-- [ ] warning areas are infront of the player
+- [x] score text is infront of the player
+- [x] warning areas are infront of the player
+- [ ] make score and life only appear when game starts
 
 # Ideas
 - [x] Have tick/cross effect appear on a won/failed game
 - [ ] 1 more game
 - [ ] 2 more games
 - [ ] standardized timer display
+
+# Sounds 
+- [ ] win sound
+- [ ] lose sound
+- [ ] kanes zoom out sound

@@ -8,7 +8,7 @@ signal game_lose
 
 @export_group("Node References")
 @export var pixel_grid : GridContainer
-@export var timer_progress : ProgressBar
+@export var timer_progress : TextureProgressBar
 var pixels : Array[Control]
 var current_time : float = 25
 

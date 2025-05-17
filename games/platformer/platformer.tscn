@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=39 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Script" uid="uid://bs4keltwfbrrn" path="res://games/platformer/platformer.gd" id="1_mauky"]
@@ -15,7 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://r71wb0u4bsxw" path="res://sprites/broken_tv_remote.png" id="11_vuxiy"]
 [ext_resource type="Script" uid="uid://bl7sx7fl7ye4a" path="res://games/platformer/tv_remote.gd" id="13_7gl5q"]
 [ext_resource type="PackedScene" uid="uid://dv4ex5tshavff" path="res://games/platformer/door.tscn" id="14_yphhh"]
+[ext_resource type="Script" uid="uid://bnprbj4be8n7j" path="res://games/platformer/existWhenGaming.gd" id="16_g0mja"]
+[ext_resource type="Texture2D" uid="uid://dwwqsaepieo3c" path="res://sprites/batteryEmpty.png" id="16_p7238"]
 [ext_resource type="Texture2D" uid="uid://bvnudttaiaab5" path="res://sprites/platformer_lab_laser.png" id="16_wtveo"]
+[ext_resource type="Texture2D" uid="uid://bm6lkjpvfdqn3" path="res://sprites/batteryFull.png" id="17_g0mja"]
 [ext_resource type="Texture2D" uid="uid://dyfubdnvunea2" path="res://sprites/whiteSqaure.png" id="17_x1jr7"]
 [ext_resource type="Script" uid="uid://bvldm4nv0g3" path="res://games/platformer/flasher.gd" id="18_x1jr7"]
 
@@ -191,7 +194,7 @@ font_color = Color(1, 1, 1, 0.439216)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyyvr"]
 size = Vector2(576, 64)
 
-[node name="Platformer" type="Node" node_paths=PackedStringArray("score_label", "player", "skip_location", "timer", "warning_areas", "laser_areas")]
+[node name="Platformer" type="Node" node_paths=PackedStringArray("score_label", "player", "skip_location", "timer", "warning_areas", "laser_areas", "lifebar")]
 script = ExtResource("1_mauky")
 score_label = NodePath("Score")
 player = NodePath("Player")
@@ -199,6 +202,7 @@ skip_location = NodePath("IntroSkipLocation")
 timer = NodePath("Timer")
 warning_areas = [NodePath("Warnings/WarningNode"), NodePath("Warnings/WarningNode2"), NodePath("Warnings/WarningNode3")]
 laser_areas = [NodePath("Lasers/LaserSet"), NodePath("Lasers/LaserSet2"), NodePath("Lasers/LaserSet3")]
+lifebar = NodePath("Lifebar")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)
@@ -330,12 +334,27 @@ move_speed = 1000.0
 [node name="Score" type="Label" parent="."]
 z_index = -1
 offset_left = 208.0
-offset_top = 160.0
+offset_top = 176.0
 offset_right = 432.0
-offset_bottom = 279.0
-text = "00"
+offset_bottom = 295.0
+text = "0"
 label_settings = SubResource("LabelSettings_yphhh")
 horizontal_alignment = 1
+script = ExtResource("16_g0mja")
+
+[node name="Lifebar" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.678431)
+z_index = -1
+offset_left = 248.0
+offset_top = 144.0
+offset_right = 296.0
+offset_bottom = 160.0
+scale = Vector2(3, 3)
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("16_p7238")
+texture_progress = ExtResource("17_g0mja")
+script = ExtResource("16_g0mja")
 
 [node name="IntroSkipLocation" type="Marker2D" parent="."]
 position = Vector2(-40, 256)

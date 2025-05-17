@@ -10,7 +10,7 @@ var next_note : float = 99
 
 
 @export_group("Node References")
-@export var combo_label : Label
+@export var score_label : Label
 
 var score: int = 0
 
@@ -36,6 +36,7 @@ func _process(delta: float) -> void:
 		detect_hit(2)
 	if(Input.is_action_just_pressed("ddr_right")):
 		detect_hit(3)
+	score_label.text = str(score) + "/" + str(win_amount)
 
 func spawn_note():
 	var ran_path = randi_range(0, paths.size()-1)

@@ -40,8 +40,8 @@ func _process(delta: float) -> void:
 	prompt.modulate = Color(1, timer/time_limit, timer/time_limit)
 	progress1.modulate = Color(1, timer/time_limit, timer/time_limit)
 	progress2.modulate = Color(1, timer/time_limit, timer/time_limit)
-	camera.zoom = Vector2(2 - timer/time_limit,2 - timer/time_limit) 
-	camera.rotation_degrees = rot_dir * (1-timer/time_limit) * 30
+	camera.zoom = Vector2(1.5 - (timer/time_limit)*0.5,1.5 - (timer/time_limit)*0.5) 
+	camera.rotation_degrees = rot_dir * (1-timer/time_limit) * 15
 	
 	#TODO Surely theres a better way 
 	if Input.is_action_just_pressed("bomb_0"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5lh8cnwu8xhg"]
+[gd_scene load_steps=10 format=3 uid="uid://b5lh8cnwu8xhg"]
 
 [ext_resource type="PackedScene" uid="uid://dgg4fsg4xhdwa" path="res://games/ddr/note_path.tscn" id="1_wdky4"]
 [ext_resource type="Script" uid="uid://dv72o4x8p6raq" path="res://games/ddr/ddr.gd" id="1_wvoco"]
@@ -17,9 +17,16 @@ fill = 2
 fill_from = Vector2(0.542735, 1)
 fill_to = Vector2(0.487179, 0)
 
-[node name="Ddr" type="Node" node_paths=PackedStringArray("paths")]
+[sub_resource type="LabelSettings" id="LabelSettings_i3ush"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvoco"]
+font_size = 121
+
+[node name="Ddr" type="Node" node_paths=PackedStringArray("paths", "score_label")]
 script = ExtResource("1_wvoco")
 paths = [NodePath("left_path"), NodePath("down_path"), NodePath("up_path"), NodePath("right_path")]
+score_label = NodePath("VBoxContainer/Score")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -46,3 +53,31 @@ arrow_texture = ExtResource("3_wvoco")
 position = Vector2(577, 40)
 arrow_texture = ExtResource("4_i3ush")
 arrow_rotation = 90
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 15.0
+offset_right = 341.0
+offset_bottom = 350.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Press the Arrows!"
+label_settings = SubResource("LabelSettings_i3ush")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 81
+bbcode_enabled = true
+text = "[wave amp=100][rainbow freq=0.1 speed=10]Combo"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "0/5"
+label_settings = SubResource("LabelSettings_wvoco")
+horizontal_alignment = 1
+vertical_alignment = 1

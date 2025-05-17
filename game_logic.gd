@@ -35,9 +35,11 @@ func _ready() -> void:
 	GameManager.channel_win.connect(rec_channel_win)
 	GameManager.channel_lose.connect(rec_channel_lose)
 	if(gamemode == Gamemode.Story):
+		
 		main_camera.zoom = Vector2(3.1,3.1)
 		main_channel.start_specific_channel(platformer_game)
 	if(GameManager.are_we_skipping_intro):
+		zooming_out = true
 		main_camera.zoom = Vector2(1,1)
 		GameManager.skip_intro.emit()
 
@@ -47,13 +49,19 @@ func _process(delta: float) -> void:
 	#if(Input.is_action_just_pressed("ui_down")):
 		#main_channel.start_channel() #so this works
 	if(zooming_out):
-		var zoom_amount : float = clampf(main_camera.zoom.x - delta * zoom_speed,1, 4 )
+		var zoom_amount : float = clampf(main_camera.zoom.x - delta * zoom_speed,1, 3.1 ) #was 4?
+		main_camera.zoom = Vector2(zoom_amount,zoom_amount)
+	else:
+		var zoom_amount : float = clampf(main_camera.zoom.x + delta * zoom_speed,1, 3.1 ) #was 4?
 		main_camera.zoom = Vector2(zoom_amount,zoom_amount)
 	if(gameplay):
 		game_loop(delta)
 
 func zoom_out():
 	zooming_out = true
+
+func zoom_in():
+	zooming_out = false
 
 func get_ready():
 	for channel in outer_channels:
@@ -99,4 +107,12 @@ func rec_channel_lose():
 	lives -= 1
 	GameManager.send_update_data(score, lives)
 	if(lives <= 0):
-		game_over.emit()
+		game_over_gg()
+
+func game_over_gg():
+	zoom_in()
+	game_over.emit()
+	gameplay = false
+	main_channel.end_channel()
+	for channel in outer_channels:
+		channel.make_offline()

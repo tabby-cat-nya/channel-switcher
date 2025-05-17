@@ -19,6 +19,7 @@ enum GameStage{
 @export var timer : Timer
 @export var warning_areas : Array[Node2D]
 @export var laser_areas : Array[Area2D]
+@export var lifebar : TextureProgressBar
 
 var game_active : bool = false
 var stage : GameStage = GameStage.None
@@ -49,6 +50,7 @@ func _process(delta: float) -> void:
 
 func update_ui(score : int, lives :int):
 	score_label.text = str(score)
+	lifebar.value = lives
 
 func rec_skip_intro():
 	#teleport player to doorway
@@ -65,6 +67,7 @@ func start_game():
 
 func end_game():
 	# set stage back to none?
+	stage = GameStage.None
 	game_active = false
 	pass
 
