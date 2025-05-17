@@ -1,12 +1,16 @@
+# Post jam changes
+- [ ] asteroids just kills you
+- [ ] can leave level in bullet hell
+
 # Games
 - [x] Finish Platformer
-- [ ] Finish Space Invaders
+- [-] Finish Space Invaders
 - [x] Finish Bullet Hell
 - [x] Finish Bomb Defusal
 - [x] Finish DDR
-- [ ] Finish Asteroids
+- [x] Finish Asteroids
 - [x] Finish Crafting
-- [ ] Game Over
+- [x] Game Over
 
 # High Priority
 - [x] remote breaking animation not working
@@ -19,10 +23,10 @@
 - [x] still need a player!!! (make it the cat from catdash?)
 
 ## Publishing
-- [ ] check if web build works well
-- [ ] finish itch page
-- [ ] upload game and possible executable
-- [ ] submit to jam!
+- [x] check if web build works well
+- [x] finish itch page
+- [x] upload game and possible executable
+- [x] submit to jam!
 
 # Minor
 - [x] score text is infront of the player
@@ -31,12 +35,12 @@
 
 # Ideas
 - [x] Have tick/cross effect appear on a won/failed game
-- [ ] 1 more game
-- [ ] 2 more games
-- [ ] standardized timer display
+- [-] 1 more game
+- [-] 2 more games
+- [x] standardized timer display
 
 # Sounds 
-- [ ] win sound
-- [ ] lose sound
-- [ ] kanes zoom out sound
-- [ ] music - electronic msuic?
+- [x] win sound
+- [x] lose sound
+- [x] kanes zoom out sound
+- [-] music - electronic msuic?
