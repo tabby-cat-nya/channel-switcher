@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://ckbyiwy0dxbsd"]
+[gd_scene load_steps=48 format=4 uid="uid://ckbyiwy0dxbsd"]
 
 [ext_resource type="Script" uid="uid://dqyddqx8xm0gw" path="res://games/platformer/player.gd" id="1_1wj3w"]
 [ext_resource type="Script" uid="uid://bs4keltwfbrrn" path="res://games/platformer/platformer.gd" id="1_mauky"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b2girwlk6ijy5" path="res://sprites/bigRemote.png" id="10_cpnel"]
 [ext_resource type="Script" uid="uid://bs0xmxrplimpf" path="res://games/platformer/trip_animation.gd" id="10_vuxiy"]
 [ext_resource type="Texture2D" uid="uid://r71wb0u4bsxw" path="res://sprites/broken_tv_remote.png" id="11_vuxiy"]
+[ext_resource type="Script" uid="uid://iqb36fx2bj38" path="res://games/platformer/animation_props.gd" id="12_4fc0x"]
 [ext_resource type="Script" uid="uid://bl7sx7fl7ye4a" path="res://games/platformer/tv_remote.gd" id="13_7gl5q"]
 [ext_resource type="PackedScene" uid="uid://dv4ex5tshavff" path="res://games/platformer/door.tscn" id="14_yphhh"]
 [ext_resource type="Script" uid="uid://bnprbj4be8n7j" path="res://games/platformer/existWhenGaming.gd" id="16_g0mja"]
@@ -71,7 +72,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -295,7 +296,7 @@ player_sprite = NodePath("Sprite2D")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_i6xil")
-animation = &"jump"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_oyf6i")
@@ -371,13 +372,16 @@ position = Vector2(256, 280)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BrokenRemote"]
 shape = SubResource("RectangleShape2D_cpnel")
 
-[node name="TripAnimation" type="AnimationPlayer" parent="."]
+[node name="TripAnimation" type="AnimationPlayer" parent="." node_paths=PackedStringArray("tv_remote")]
 libraries = {
 &"": SubResource("AnimationLibrary_mauky")
 }
 script = ExtResource("10_vuxiy")
+tv_remote = NodePath("../AnimationProps/TVRemote")
 
 [node name="AnimationProps" type="Node2D" parent="."]
+visible = false
+script = ExtResource("12_4fc0x")
 
 [node name="TVRemote" type="AnimatedSprite2D" parent="AnimationProps"]
 visible = false
@@ -532,5 +536,6 @@ script = ExtResource("18_x1jr7")
 
 [connection signal="area_entered" from="Player/hitbox" to="Player" method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="TheBitWhereYouTrip" to="TripAnimation" method="_on_the_bit_where_you_trip_area_entered"]
+[connection signal="area_entered" from="TheBitWhereYouTrip" to="AnimationProps" method="_on_the_bit_where_you_trip_area_entered"]
 [connection signal="area_entered" from="BrokenRemote" to="AnimationProps/TVRemote" method="_on_broken_remote_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
