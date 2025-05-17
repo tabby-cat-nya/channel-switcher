@@ -68,3 +68,6 @@ max_value = 8.0
 step = 1.0
 fill_mode = 3
 show_percentage = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)

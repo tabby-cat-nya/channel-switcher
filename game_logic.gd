@@ -45,7 +45,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#if(Input.is_action_just_pressed("ui_down")):
-		#zoom_out()
+		#main_channel.start_channel() #so this works
 	if(zooming_out):
 		var zoom_amount : float = clampf(main_camera.zoom.x - delta * zoom_speed,1, 4 )
 		main_camera.zoom = Vector2(zoom_amount,zoom_amount)
@@ -68,11 +68,11 @@ func game_loop(delta : float):
 	var online_channels : Array[Channel]
 	var offline_channels : Array[Channel]
 	# sort all the channels into online and offline
-	if main_channel.channel_mode == Channel.Mode.Online:
-	#if main_channel.platformer_online:
+	#if main_channel.channel_mode == Channel.Mode.Online:
+	if main_channel.platformer_online:
 		online_channels.append(main_channel)
 	else: 
-		online_channels.append(main_channel)
+		offline_channels.append(main_channel)
 	for channel in outer_channels:
 		if(channel.channel_mode == Channel.Mode.Online):
 			online_channels.append(channel)
@@ -83,13 +83,13 @@ func game_loop(delta : float):
 	if(online_channels.size() < target_channels and offline_channels.size() > 0):
 		var random_channel_number = randi_range(0, offline_channels.size()-1)
 		var random_game = randi_range(0, games.size()-1)
-		#offline_channels[random_channel_number].start_channel()
-		if(offline_channels[random_channel_number] != main_channel):
-			offline_channels[random_channel_number].start_channel()
+		offline_channels[random_channel_number].start_channel()
+		#if(offline_channels[random_channel_number] != main_channel):
+			#offline_channels[random_channel_number].start_channel()
 			#picking a random game is cool but we cant have two of the same!
 			#offline_channels[random_channel_number].start_specific_channel(games[random_game])
-		else:
-			main_channel.start_channel()
+		#else:
+			#main_channel.start_channel()
 
 func rec_channel_win():
 	score += 1

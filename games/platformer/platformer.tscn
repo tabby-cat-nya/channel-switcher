@@ -328,6 +328,7 @@ open = false
 move_speed = 1000.0
 
 [node name="Score" type="Label" parent="."]
+z_index = -1
 offset_left = 208.0
 offset_top = 160.0
 offset_right = 432.0
@@ -410,6 +411,7 @@ debug_color = Color(0.977603, 0, 0.402823, 0.42)
 
 [node name="WarningNode" type="Node2D" parent="Warnings"]
 visible = false
+z_index = -1
 position = Vector2(320, 64)
 
 [node name="Sprite2D" type="Sprite2D" parent="Warnings/WarningNode"]
@@ -420,6 +422,7 @@ script = ExtResource("18_x1jr7")
 
 [node name="WarningNode2" type="Node2D" parent="Warnings"]
 visible = false
+z_index = -1
 position = Vector2(320, 160)
 
 [node name="Sprite2D" type="Sprite2D" parent="Warnings/WarningNode2"]
@@ -430,6 +433,7 @@ script = ExtResource("18_x1jr7")
 
 [node name="WarningNode3" type="Node2D" parent="Warnings"]
 visible = false
+z_index = -1
 position = Vector2(320, 256)
 
 [node name="Sprite2D" type="Sprite2D" parent="Warnings/WarningNode3"]
