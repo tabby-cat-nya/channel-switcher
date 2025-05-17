@@ -347,7 +347,7 @@ shape = SubResource("RectangleShape2D_86tx6")
 
 [node name="Event" parent="." instance=ExtResource("8_gqvfi")]
 position = Vector2(-1552, -472)
-text = "Aha, I've finaly found a way in! Now time to find some treasure from this abandoned lab..."
+text = "Aha, I've finally found a way in! Now time to find some treasure from this abandoned lab..."
 
 [node name="Event2" parent="." instance=ExtResource("8_gqvfi")]
 position = Vector2(-856, 240)

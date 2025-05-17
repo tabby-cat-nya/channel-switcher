@@ -132,7 +132,7 @@ text = "[ul] [url=https://commons.wikimedia.org/wiki/File:Television_static.gif]
  [url=https://opengameart.org/content/win-sound-2]Win Sound 2 by remaxim[/url]
  [url=https://opengameart.org/content/bad-sound-1]Bad sound 1 by remaxim[/url]
  [url=https://opengameart.org/content/new-thing-get]New Thing Get! by Congusbongus[/url]
- evil.mp3 by Unlimited_gaming"
+ evil.mp3 by Kane"
 fit_content = true
 
 [node name="BackButton" type="Button" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
