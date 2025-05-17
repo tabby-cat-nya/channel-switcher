@@ -35,7 +35,6 @@ offset_bottom = 40.0
 texture = SubResource("GradientTexture2D_j0t7f")
 
 [node name="MenuContainer" type="CenterContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,7 +59,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 31
 bbcode_enabled = true
-text = "[wave]Alternate (Name Pending)"
+text = "Channel Switcher"
 fit_content = true
 autowrap_mode = 0
 
@@ -93,6 +92,7 @@ layout_mode = 2
 text = "Exit Game"
 
 [node name="CreditsContainer" type="CenterContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +128,11 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "[ul] [url=https://commons.wikimedia.org/wiki/File:Television_static.gif]TV Static Animation from Wikipedia[/url]
- [url=https://opengameart.org/content/neko-cat-fighter-animated-jason-em-style]Neko (Cat fighter) by Umz [/url]"
+ [url=https://opengameart.org/content/neko-cat-fighter-animated-jason-em-style]Neko (Cat fighter) by Umz [/url]
+ [url=https://opengameart.org/content/win-sound-2]Win Sound 2 by remaxim[/url]
+ [url=https://opengameart.org/content/bad-sound-1]Bad sound 1 by remaxim[/url]
+ [url=https://opengameart.org/content/new-thing-get]New Thing Get! by Congusbongus[/url]
+ evil.mp3 by Unlimited_gaming"
 fit_content = true
 
 [node name="BackButton" type="Button" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]

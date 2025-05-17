@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ip51kjj5sl6v"]
+[gd_scene load_steps=4 format=3 uid="uid://ip51kjj5sl6v"]
 
 [ext_resource type="Script" uid="uid://cuct36ytrc3mu" path="res://game_manager.gd" id="1_d8p07"]
 [ext_resource type="Texture2D" uid="uid://r71wb0u4bsxw" path="res://sprites/broken_tv_remote.png" id="2_s0thi"]
+[ext_resource type="AudioStream" uid="uid://c5r76x65ps5a2" path="res://sounds/evil.mp3" id="3_vwfng"]
 
-[node name="GameManager" type="Node"]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("zoom_player")]
 script = ExtResource("1_d8p07")
 broken_tv_remote = ExtResource("2_s0thi")
+zoom_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vwfng")
+volume_db = -2.08

@@ -17,6 +17,7 @@ signal end_platformer
 signal game_over
 
 @export var broken_tv_remote : Texture
+@export var zoom_player : AudioStreamPlayer
 var are_we_skipping_intro : bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +31,7 @@ func _process(delta: float) -> void:
 
 func play_zoom_out():
 	zoom_out_signal.emit()
+	zoom_player.play()
 
 func show_chat(text : String):
 	show_chat_signal.emit(text)

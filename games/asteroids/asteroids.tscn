@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw1hhx7lyfonr"]
+[gd_scene load_steps=10 format=3 uid="uid://bw1hhx7lyfonr"]
 
 [ext_resource type="Script" uid="uid://brih2jftm2tsa" path="res://games/asteroids/ship_controller.gd" id="1_6dc0m"]
 [ext_resource type="Script" uid="uid://carkc2diu0xwd" path="res://games/asteroids/asteroids.gd" id="1_j0tb1"]
@@ -22,6 +22,9 @@ radius = 26.0192
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j0tb1"]
 radius = 26.0192
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0tb1"]
+font_size = 32
 
 [node name="Asteroids" type="Node" node_paths=PackedStringArray("asteroid_spawns", "win_progress", "player")]
 script = ExtResource("1_j0tb1")
@@ -92,5 +95,19 @@ max_value = 1.0
 step = 0.0
 fill_mode = 3
 show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.5
+offset_top = -45.0
+offset_right = 136.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Turn with C and V"
+label_settings = SubResource("LabelSettings_j0tb1")
 
 [connection signal="area_entered" from="Ship/Area2D" to="." method="_on_area_2d_area_entered"]
