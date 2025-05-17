@@ -19,8 +19,10 @@ colors = PackedColorArray(1, 0, 0.141176, 1, 1, 1, 0, 1)
 gradient = SubResource("Gradient_6p5vi")
 fill_to = Vector2(1, 1)
 
-[node name="Reaction" type="Node"]
+[node name="Reaction" type="Node" node_paths=PackedStringArray("prepare_node", "press_node")]
 script = ExtResource("1_fqqjl")
+prepare_node = NodePath("Prepare")
+press_node = NodePath("Press")
 
 [node name="Prepare" type="Control" parent="."]
 layout_mode = 3

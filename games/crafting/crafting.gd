@@ -4,13 +4,15 @@ signal game_win
 signal game_lose
 
 @export var keys : Array[String]
-@export var time_limit : float = 25
+@export var time_limit : float = 20
+@export var pixel_count : int = 16
 
 @export_group("Node References")
 @export var pixel_grid : GridContainer
 @export var timer_progress : TextureProgressBar
 var pixels : Array[Control]
 var current_time : float = 25
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +21,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func create_pixels():
-	for i in range(25):
+	for i in range(pixel_count):
 		var newPixel = load("res://games/crafting/pixel.tscn").instantiate()
 		var randomKey = randi_range(0,keys.size()-1)
 		newPixel.key = keys[randomKey]
@@ -48,7 +50,7 @@ func count_activated() -> bool:
 	for pixel in pixels:
 		if pixel.activated:
 			count += 1
-	if count == 25:
+	if count == pixel_count:
 		return true
 	else: 
 		return false

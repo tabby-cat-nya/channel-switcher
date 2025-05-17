@@ -1,7 +1,7 @@
 # Games
 - [x] Finish Platformer
 - [ ] Finish Space Invaders
-- [ ] Finish Bullet Hell
+- [x] Finish Bullet Hell
 - [x] Finish Bomb Defusal
 - [x] Finish DDR
 - [ ] Finish Asteroids
@@ -14,8 +14,8 @@
 - [x] lasers not appearing 
 - [x] only 1 lane getting warning
 - [x] platformer works once but having trouble getting it to replay
-- [ ] menu credits 
-- [ ] menu exit? (not visible in web build)
+- [x] menu credits 
+- [x] menu exit? (not visible in web build)
 - [x] still need a player!!! (make it the cat from catdash?)
 
 ## Publishing
@@ -39,3 +39,4 @@
 - [ ] win sound
 - [ ] lose sound
 - [ ] kanes zoom out sound
+- [ ] music - electronic msuic?

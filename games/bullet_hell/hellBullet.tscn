@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://4gv3dbn62dys"]
+
+[ext_resource type="Script" uid="uid://bkytaq1jg8ntg" path="res://games/bullet_hell/hell_bullet.gd" id="1_733pn"]
+[ext_resource type="Texture2D" uid="uid://coo7nbsgvj4m4" path="res://sprites/hellBullet.png" id="1_eotlb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eotlb"]
+radius = 16.0312
+
+[node name="HellBullet" type="Area2D"]
+script = ExtResource("1_733pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_eotlb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eotlb")

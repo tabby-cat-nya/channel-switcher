@@ -59,7 +59,7 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-columns = 5
+columns = 4
 
 [node name="Timer" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
 visible = false

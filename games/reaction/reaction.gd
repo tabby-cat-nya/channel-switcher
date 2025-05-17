@@ -26,9 +26,13 @@ func _process(delta: float) -> void:
 		reaction_window -= delta
 	if(Input.is_action_just_pressed("reaction_press")):
 		if(time_remaining<=0 and reaction_window > 0):
-			pass
+			print("reaction win")
+			game_win.emit()
 			#winner
 		else:
-			pass
+			print("reaction lose")
+			game_lose.emit()
 			#loser
-	pass
+	if(reaction_window <= 0):
+		print("reaction lose")
+		game_lose.emit()
