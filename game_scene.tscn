@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct8axfbvd2wn4"]
+[gd_scene load_steps=16 format=3 uid="uid://ct8axfbvd2wn4"]
 
 [ext_resource type="Script" uid="uid://d2q6xfk8htbyy" path="res://game_logic.gd" id="1_j5hk1"]
 [ext_resource type="PackedScene" uid="uid://63rik2noj8id" path="res://base modules/test_channel.tscn" id="1_mlf6e"]
@@ -18,7 +18,10 @@
 font_size = 11
 font_color = Color(1, 1, 1, 0.533333)
 
-[node name="GameScene" type="Control" node_paths=PackedStringArray("main_camera", "outer_channels", "main_channel")]
+[sub_resource type="LabelSettings" id="LabelSettings_mlphb"]
+font_size = 76
+
+[node name="GameScene" type="Control" node_paths=PackedStringArray("main_camera", "outer_channels", "main_channel", "game_over_screen", "game_over_score")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +34,8 @@ games = Array[PackedScene]([ExtResource("3_mj2jn"), ExtResource("7_6e45b"), ExtR
 main_camera = NodePath("Camera2D")
 outer_channels = [NodePath("GridContainer/Control"), NodePath("GridContainer/Control2"), NodePath("GridContainer/Control9"), NodePath("GridContainer/Control6"), NodePath("GridContainer/Control4"), NodePath("GridContainer/Control5"), NodePath("GridContainer/Control8"), NodePath("GridContainer/Control7")]
 main_channel = NodePath("GridContainer/Main")
+game_over_screen = NodePath("GameOverScreen")
+game_over_score = NodePath("GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScoreLabel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -100,9 +105,9 @@ channel_scene = ExtResource("9_udeyl")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(320, 180)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Popup and Chat" type="CanvasLayer" parent="."]
 
-[node name="Chat" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("rich_label")]
+[node name="Chat" type="PanelContainer" parent="Popup and Chat" node_paths=PackedStringArray("rich_label")]
 visible = false
 custom_minimum_size = Vector2(500, 0)
 anchors_preset = 7
@@ -119,26 +124,26 @@ grow_vertical = 0
 script = ExtResource("11_ueiaa")
 rich_label = NodePath("MarginContainer/RichTextLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Chat"]
+[node name="MarginContainer" type="MarginContainer" parent="Popup and Chat/Chat"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Chat/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Popup and Chat/Chat/MarginContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Uh oh...."
 
-[node name="Label" type="Label" parent="CanvasLayer/Chat"]
+[node name="Label" type="Label" parent="Popup and Chat/Chat"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Press Enter..."
 label_settings = SubResource("LabelSettings_daj04")
 
-[node name="Item Get Popup" type="PanelContainer" parent="CanvasLayer" node_paths=PackedStringArray("texture_rect", "label")]
+[node name="Item Get Popup" type="PanelContainer" parent="Popup and Chat" node_paths=PackedStringArray("texture_rect", "label")]
 visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
@@ -156,40 +161,108 @@ script = ExtResource("12_daj04")
 texture_rect = NodePath("MarginContainer/VBoxContainer/TextureRect")
 label = NodePath("MarginContainer/VBoxContainer/Label2")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Item Get Popup"]
+[node name="MarginContainer" type="MarginContainer" parent="Popup and Chat/Item Get Popup"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Item Get Popup/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup and Chat/Item Get Popup/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/Item Get Popup/MarginContainer/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="Popup and Chat/Item Get Popup/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[wave]You got an Item!"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Item Get Popup/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Popup and Chat/Item Get Popup/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("11_j5hk1")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label2" type="RichTextLabel" parent="CanvasLayer/Item Get Popup/MarginContainer/VBoxContainer"]
+[node name="Label2" type="RichTextLabel" parent="Popup and Chat/Item Get Popup/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]TV Remote"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="CanvasLayer/Item Get Popup/MarginContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="Popup and Chat/Item Get Popup/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Press Enter..."
 label_settings = SubResource("LabelSettings_daj04")
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 80
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[shake][color=red]Game Over"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score:"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "12"
+label_settings = SubResource("LabelSettings_mlphb")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayAgainButton" type="Button" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play Again"
+
+[node name="ReturnToMenu" type="Button" parent="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Return to Menu"
+
+[connection signal="pressed" from="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

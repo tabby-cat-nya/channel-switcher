@@ -22,6 +22,9 @@ signal game_over(score : int)
 @export var main_camera : Camera2D
 @export var outer_channels : Array[Channel]
 @export var main_channel : Channel
+@export var game_over_screen : CanvasLayer
+@export var game_over_score : Label
+
 var gamemode : Gamemode = Gamemode.Story #will be set by manager/menu option
 var zooming_out : bool = false
 var gameplay : bool = false # becomes true when the game starts
@@ -111,8 +114,19 @@ func rec_channel_lose():
 
 func game_over_gg():
 	zoom_in()
-	
+	GameManager.send_game_over()
 	gameplay = false
 	main_channel.end_channel()
 	for channel in outer_channels:
 		channel.make_offline()
+	game_over_screen.show()
+	game_over_score.text = str(score)
+
+
+func _on_play_again_button_pressed() -> void:
+	GameManager.are_we_skipping_intro = true
+	get_tree().change_scene_to_file("res://game_scene.tscn")
+
+
+func _on_return_to_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://menu/menu.tscn")
