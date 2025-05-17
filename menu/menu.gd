@@ -42,3 +42,7 @@ func _on_credits_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	menu_page = Page.Menu
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
