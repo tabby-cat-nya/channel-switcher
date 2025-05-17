@@ -15,8 +15,8 @@ signal game_over(score : int)
 @export var games : Array[PackedScene]
 @export var zoom_speed : float = 0.5
 @export_group("Channel Rules")
-@export var target_channels : float = 1.5
-@export var channel_growth_per_min : float = 4
+@export var target_channels : float = 1
+@export var channel_growth_per_min : float = 0.8
 
 @export_group("Node References")
 @export var main_camera : Camera2D

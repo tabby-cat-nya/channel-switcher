@@ -3,7 +3,8 @@ extends Node
 signal game_win
 signal game_lose
 
-@export var reaction_window : float = 1
+@export var grace : float = 3
+@export var reaction_window : float = 1.5
 @export_group("Node References")
 @export var prepare_node : Control
 @export var press_node : Control
@@ -20,6 +21,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	time_remaining -= delta
+	grace -= delta
 	prepare_node.visible = time_remaining > 0
 	press_node.visible = time_remaining <= 0
 	if(time_remaining <= 0):
@@ -30,9 +32,10 @@ func _process(delta: float) -> void:
 			game_win.emit()
 			#winner
 		else:
-			print("reaction lose")
-			game_lose.emit()
-			#loser
+			if(grace <= 0):
+				print("reaction lose")
+				game_lose.emit()
+				#loser
 	if(reaction_window <= 0):
 		print("reaction lose")
 		game_lose.emit()
