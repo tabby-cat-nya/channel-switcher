@@ -3,19 +3,30 @@ extends Node
 signal game_win
 signal game_lose
 
-@export var code_length : int = 8 
+@export var code_length : int = 5 
+@export var time_limit : float  = 8
 
 @export_group("Node References")
 @export var progress1 : ProgressBar
 @export var progress2 : ProgressBar
 @export var prompt : Label
+@export var camera : Camera2D
 
 var numbers_typed : int = 0
 var current_number : int
+var timer : float  = 15
+var rot_dir : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pick_new_number()
+	timer = time_limit
+	if(randi_range(0,1) == 1):
+		rot_dir = 1
+	else:
+		rot_dir = -1
+	progress1.max_value = code_length
+	progress2.max_value = code_length
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +34,14 @@ func _process(delta: float) -> void:
 	progress1.value = numbers_typed
 	progress2.value = numbers_typed
 	prompt.text = str(current_number)
+	timer -= delta
+	if(timer <= 0):
+		game_lose.emit()
+	prompt.modulate = Color(1, timer/time_limit, timer/time_limit)
+	progress1.modulate = Color(1, timer/time_limit, timer/time_limit)
+	progress2.modulate = Color(1, timer/time_limit, timer/time_limit)
+	camera.zoom = Vector2(2 - timer/time_limit,2 - timer/time_limit) 
+	camera.rotation_degrees = rot_dir * (1-timer/time_limit) * 30
 	
 	#TODO Surely theres a better way 
 	if Input.is_action_just_pressed("bomb_0"):

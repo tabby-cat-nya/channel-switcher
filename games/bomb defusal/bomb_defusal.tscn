@@ -13,11 +13,12 @@ fill_from = Vector2(0.495726, 0.452991)
 [sub_resource type="LabelSettings" id="LabelSettings_yym1j"]
 font_size = 226
 
-[node name="BombDefusal" type="Node" node_paths=PackedStringArray("progress1", "progress2", "prompt")]
+[node name="BombDefusal" type="Node" node_paths=PackedStringArray("progress1", "progress2", "prompt", "camera")]
 script = ExtResource("1_kwp46")
 progress1 = NodePath("MarginContainer/PanelContainer/HBoxContainer/ProgressBar")
 progress2 = NodePath("MarginContainer/PanelContainer/HBoxContainer/ProgressBar2")
 prompt = NodePath("MarginContainer/PanelContainer/HBoxContainer/Label")
+camera = NodePath("Camera2D")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -71,3 +72,4 @@ show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 180)
+ignore_rotation = false
