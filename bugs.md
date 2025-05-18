@@ -1,5 +1,10 @@
 # Post jam changes
 - [ ] asteroids just kills you
+	- [ ] start by disabling game overs so we can watch the game loop
+	- [ ] maybe also extend the display of ticks and crosses for testing
+	- [ ] issue is also present in bullet hell, likely somehting to do with area detection
+		- [ ] bullets are created outside of the game node causing them to persist over games
+		- [ ] if you lose the scene doesnt remove itself (probably removes one of the bullets instead)
 - [ ] can leave level in bullet hell
 
 # Games

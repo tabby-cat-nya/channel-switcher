@@ -37,7 +37,7 @@ func spawn_new_bullet():
 	follow_line.progress_ratio = randf()
 	newBullet.global_position = follow_line.global_position
 	#newBullet.heading = -newBullet.global_position.normalized()
-	get_parent().add_child(newBullet)
+	add_child(newBullet)
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

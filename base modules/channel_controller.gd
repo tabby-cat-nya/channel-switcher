@@ -15,6 +15,7 @@ enum Mode{
 @export var dead_channel : bool # mark channel as disabled so game logic doesnt try to switch it on
 @export var win_result_tex : Texture
 @export var lose_result_tex : Texture
+@export var result_display_time : float = 2
 @export_group("Node References")
 @export var offline_channel_cover : TextureRect
 @export var static_channel_cover : TextureRect
@@ -65,13 +66,13 @@ func make_offline():
 func win_channel():
 	GameManager.channel_win.emit()
 	result_cover.texture = win_result_tex
-	result_realness = 2
+	result_realness = result_display_time
 	win_player.play()
 	end_channel()
 
 func lose_channel():
 	GameManager.channel_lose.emit()
 	result_cover.texture = lose_result_tex
-	result_realness = 2
+	result_realness = result_display_time
 	lose_player.play()
 	end_channel()

@@ -34,7 +34,7 @@ func spawn_new_asteroid():
 	newAsteroid.global_position = asteroid_spawns[randSpawn].global_position
 	newAsteroid.target_pos = player.global_position
 	#newBullet.heading = -newBullet.global_position.normalized()
-	get_parent().add_child(newAsteroid)
+	add_child(newAsteroid)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

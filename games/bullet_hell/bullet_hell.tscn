@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnpyrh4c6a7cg"]
+[gd_scene load_steps=12 format=3 uid="uid://cnpyrh4c6a7cg"]
 
 [ext_resource type="Script" uid="uid://dld4egumb2u0o" path="res://games/bullet_hell/bullet_hell.gd" id="1_uvm3w"]
 [ext_resource type="Script" uid="uid://c100m60xe4k3r" path="res://games/bullet_hell/bulletHellMovement.gd" id="1_x66ke"]
@@ -29,6 +29,9 @@ point_count = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvm3w"]
 font_size = 46
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvm3w"]
+size = Vector2(658, 26)
 
 [node name="BulletHell" type="Node" node_paths=PackedStringArray("spawn_line", "follow_line", "win_progress")]
 script = ExtResource("1_uvm3w")
@@ -102,5 +105,35 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Dodge with IJKL!"
 label_settings = SubResource("LabelSettings_uvm3w")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-3, -17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(319, 3)
+shape = SubResource("RectangleShape2D_uvm3w")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-3, 370)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(319, 3)
+shape = SubResource("RectangleShape2D_uvm3w")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-10, -77)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(319, 3)
+shape = SubResource("RectangleShape2D_uvm3w")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(656, -91)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(319, 3)
+shape = SubResource("RectangleShape2D_uvm3w")
 
 [connection signal="area_entered" from="CharacterBody2D/hitbox" to="." method="_on_hitbox_area_entered"]

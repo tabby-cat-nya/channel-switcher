@@ -10,7 +10,7 @@ enum Gamemode{
 signal game_over(score : int)
 
 @export var max_lives = 3
-@export var lives = 3
+@export var lives = 3 #debug
 @export var platformer_game : PackedScene
 @export var games : Array[PackedScene]
 @export var zoom_speed : float = 0.5
