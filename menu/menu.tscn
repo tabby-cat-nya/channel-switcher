@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://0ajx46iu2l51"]
+[gd_scene load_steps=5 format=3 uid="uid://0ajx46iu2l51"]
 
 [ext_resource type="Script" uid="uid://bjkqa4cowhacd" path="res://menu/menu.gd" id="1_j0t7f"]
 
@@ -15,6 +15,9 @@ fill = 1
 fill_from = Vector2(0.825082, 0.657132)
 fill_to = Vector2(0.610561, 0.569124)
 repeat = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0t7f"]
+font_size = 9
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("menu_container", "credits_container", "exit_button")]
 layout_mode = 3
@@ -138,6 +141,22 @@ fit_content = true
 [node name="BackButton" type="Button" parent="CreditsContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Go Back"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "V 1.0.1 (Postjam)"
+label_settings = SubResource("LabelSettings_j0t7f")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="pressed" from="MenuContainer/PanelContainer/MarginContainer/VBoxContainer/IntroButton" to="." method="_on_intro_button_pressed"]
 [connection signal="pressed" from="MenuContainer/PanelContainer/MarginContainer/VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
