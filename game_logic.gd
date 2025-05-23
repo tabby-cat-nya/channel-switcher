@@ -115,12 +115,14 @@ func rec_channel_lose():
 func game_over_gg():
 	zoom_in()
 	GameManager.send_game_over()
+	if gameplay:
+		game_over_score.text = str(score)
 	gameplay = false
 	main_channel.end_channel()
 	for channel in outer_channels:
 		channel.make_offline()
 	game_over_screen.show()
-	game_over_score.text = str(score)
+	
 
 
 func _on_play_again_button_pressed() -> void:

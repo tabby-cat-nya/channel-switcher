@@ -69,9 +69,8 @@ channel_scene = ExtResource("3_mj2jn")
 
 [node name="Control9" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
-channel_name = "Asteroids"
-channel_scene = ExtResource("3_mj2jn")
-dead_channel = true
+channel_name = "Invaders"
+channel_scene = ExtResource("9_miq82")
 
 [node name="Control6" parent="GridContainer" instance=ExtResource("1_mlf6e")]
 layout_mode = 2
@@ -196,6 +195,7 @@ fit_content = true
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Popup and Chat/Item Get Popup/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8

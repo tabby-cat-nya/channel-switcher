@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkabgl6p44c5b"]
+[gd_scene load_steps=12 format=3 uid="uid://bkabgl6p44c5b"]
 
-[ext_resource type="Texture2D" uid="uid://dqorec3q3h3pp" path="res://sprites/asteroidsShip.png" id="1_8m3yy"]
 [ext_resource type="Script" uid="uid://c1e46eu5tbni0" path="res://games/space invaders/ship.gd" id="1_jsxp6"]
 [ext_resource type="Script" uid="uid://0v0y62pyhpq4" path="res://games/space invaders/space_invaders.gd" id="1_k5cbn"]
-[ext_resource type="Texture2D" uid="uid://by327tfhk6xrs" path="res://sprites/invadersBarrier.png" id="2_jsxp6"]
+[ext_resource type="Texture2D" uid="uid://d1p5uve4nterl" path="res://sprites/invadersShip.png" id="3_k5cbn"]
+[ext_resource type="Texture2D" uid="uid://yff1qo402ihn" path="res://sprites/ufo.png" id="4_k5cbn"]
 
 [sub_resource type="Gradient" id="Gradient_4laqq"]
 interpolation_mode = 1
@@ -21,11 +21,21 @@ noise = SubResource("FastNoiseLite_ceqm6")
 [sub_resource type="CircleShape2D" id="CircleShape2D_jdxs5"]
 radius = 24.1868
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gagve"]
-size = Vector2(56, 28)
+[sub_resource type="Curve2D" id="Curve2D_jdxs5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 40, 70, 0, 0, 0, 0, 600, 70, 0, 0, 0, 0, 600, 150, 0, 0, 0, 0, 40, 150, 0, 0, 0, 0, 40, 230, 0, 0, 0, 0, 600, 230)
+}
+point_count = 6
 
-[node name="SpaceInvaders" type="Node"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gagve"]
+radius = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5cbn"]
+font_size = 36
+
+[node name="SpaceInvaders" type="Node" node_paths=PackedStringArray("ufo_path")]
 script = ExtResource("1_k5cbn")
+ufo_path = NodePath("UfoPath/PathFollow2D")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -44,7 +54,9 @@ bullet_spawn = NodePath("Spawn")
 bullet_goal = NodePath("Goal")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
-texture = ExtResource("1_8m3yy")
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("3_k5cbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ship"]
 shape = SubResource("CircleShape2D_jdxs5")
@@ -55,13 +67,33 @@ position = Vector2(34, 1.48619e-06)
 [node name="Goal" type="Marker2D" parent="Ship"]
 position = Vector2(335, 1.46433e-05)
 
-[node name="Barrier" type="StaticBody2D" parent="."]
-position = Vector2(334, 264)
+[node name="UfoPath" type="Path2D" parent="."]
+position = Vector2(0, 23)
+curve = SubResource("Curve2D_jdxs5")
 
-[node name="Sprite2D" type="Sprite2D" parent="Barrier"]
-scale = Vector2(2, 2)
-texture = ExtResource("2_jsxp6")
+[node name="PathFollow2D" type="PathFollow2D" parent="UfoPath"]
+position = Vector2(40, 70)
+rotates = false
+loop = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_gagve")
+[node name="UFO" type="Area2D" parent="UfoPath/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UfoPath/PathFollow2D/UFO"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_k5cbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UfoPath/PathFollow2D/UFO"]
+shape = SubResource("CircleShape2D_gagve")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -196.0
+offset_right = 196.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "Shoot The UFO with O!"
+label_settings = SubResource("LabelSettings_k5cbn")
+
+[connection signal="area_entered" from="UfoPath/PathFollow2D/UFO" to="." method="_on_ufo_area_entered"]

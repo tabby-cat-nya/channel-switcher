@@ -44,26 +44,29 @@ func _process(delta: float) -> void:
 	camera.rotation_degrees = rot_dir * (1-timer/time_limit) * 15
 	
 	#TODO Surely theres a better way 
-	if Input.is_action_just_pressed("bomb_0"):
-		enter_number(0)
-	elif Input.is_action_just_pressed("bomb_1"):
-		enter_number(1)
-	elif Input.is_action_just_pressed("bomb_2"):
-		enter_number(2)
-	elif Input.is_action_just_pressed("bomb_3"):
-		enter_number(3)
-	elif Input.is_action_just_pressed("bomb_4"):
-		enter_number(4)
-	elif Input.is_action_just_pressed("bomb_5"):
-		enter_number(5)
-	elif Input.is_action_just_pressed("bomb_6"):
-		enter_number(6)
-	elif Input.is_action_just_pressed("bomb_7"):
-		enter_number(7)
-	elif Input.is_action_just_pressed("bomb_8"):
-		enter_number(8)
-	elif Input.is_action_just_pressed("bomb_9"):
-		enter_number(9)
+	for i : int in range(10):
+		if Input.is_action_just_pressed("bomb_" + str(i)):
+			enter_number(i)
+	#if Input.is_action_just_pressed("bomb_0"):
+		#enter_number(0)
+	#elif Input.is_action_just_pressed("bomb_1"):
+		#enter_number(1)
+	#elif Input.is_action_just_pressed("bomb_2"):
+		#enter_number(2)
+	#elif Input.is_action_just_pressed("bomb_3"):
+		#enter_number(3)
+	#elif Input.is_action_just_pressed("bomb_4"):
+		#enter_number(4)
+	#elif Input.is_action_just_pressed("bomb_5"):
+		#enter_number(5)
+	#elif Input.is_action_just_pressed("bomb_6"):
+		#enter_number(6)
+	#elif Input.is_action_just_pressed("bomb_7"):
+		#enter_number(7)
+	#elif Input.is_action_just_pressed("bomb_8"):
+		#enter_number(8)
+	#elif Input.is_action_just_pressed("bomb_9"):
+		#enter_number(9)
 
 func enter_number(number : int):
 	if(number == current_number):
